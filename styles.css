@@ -1,0 +1,133 @@
+/* Configuración de la tipografía y colores base */
+:root {
+    --color-bg: #FFFFFF;
+    --color-bg-alt: #DDF4E7;
+    --color-text: #124170;
+    --color-text-alt: #26667F;
+    --color-primary: #26667F;
+    --color-primary-light: #67C090;
+    --color-accent: #67C090;
+    --color-border: #cde2d4;
+    --color-footer-bg: #124170;
+    --color-footer-text: #DDF4E7;
+}
+
+/* Configuración del modo oscuro */
+.dark {
+    --color-bg: #0d2c4a;
+    --color-bg-alt: #124170;
+    --color-text: #DDF4E7;
+    --color-text-alt: #a7d9bb;
+    --color-primary: #67C090;
+    --color-primary-light: #85d1a7;
+    --color-accent: #DDF4E7;
+    --color-border: #26667F;
+    --color-footer-bg: #081a2e;
+    --color-footer-text: #DDF4E7;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Clases personalizadas para aplicar variables CSS */
+.bg-main { background-color: var(--color-bg); }
+.bg-alt { background-color: var(--color-bg-alt); }
+.text-main { color: var(--color-text); }
+.text-alt { color: var(--color-text-alt); }
+.bg-primary { background-color: var(--color-primary); }
+.text-primary { color: var(--color-primary); }
+.border-main { border-color: var(--color-border); }
+.bg-footer { background-color: var(--color-footer-bg); }
+.text-footer { color: var(--color-footer-text); }
+
+/* Estilo de degradado para secciones */
+.bg-gradient-section {
+    background: linear-gradient(180deg, var(--color-bg) 0%, var(--color-bg-alt) 15%, var(--color-bg-alt) 85%, var(--color-bg) 100%);
+}
+.dark .bg-gradient-section {
+    background: linear-gradient(180deg, var(--color-bg) 0%, var(--color-bg-alt) 15%, var(--color-bg-alt) 85%, var(--color-bg) 100%);
+}
+
+/* Estilo para la barra de navegación con efecto blur */
+.navbar-scrolled {
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+.dark .navbar-scrolled {
+    background-color: rgba(13, 44, 74, 0.8);
+}
+
+/* Estilo para el menú móvil */
+.mobile-menu-open {
+    transform: translateY(0);
+    opacity: 1;
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+}
+.mobile-menu-closed {
+    transform: translateY(-20px);
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* ========== NUEVOS ESTILOS PARA EL CARRUSEL ========== */
+.carousel-item {
+    min-width: 100%;
+    position: relative;
+    aspect-ratio: 16 / 7; /* Proporción para un tamaño considerable */
+}
+
+.carousel-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.5);
+    color: #124170;
+    border-radius: 9999px;
+    width: 3rem; /* 48px */
+    height: 3rem; /* 48px */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+.carousel-nav-btn:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+    transform: translateY(-50%) scale(1.1);
+}
+.dark .carousel-nav-btn {
+    background-color: rgba(13, 44, 74, 0.5);
+    color: #DDF4E7;
+}
+.dark .carousel-nav-btn:hover {
+    background-color: rgba(13, 44, 74, 0.9);
+}
+
+/* Animación de entrada para secciones */
+.fade-in-section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.fade-in-section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Efecto pulsante sutil para botones */
+.btn-pulse {
+    animation: pulse 2.5s infinite cubic-bezier(0.4, 0, 0.6, 1);
+}
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.03);
+    }
+}
