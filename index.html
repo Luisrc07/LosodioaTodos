@@ -13,50 +13,20 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="bg-main text-main">
-
+<div id="header-placeholder"></div>
     <button id="theme-toggle" class="fixed bottom-5 right-5 z-50 p-3 rounded-full bg-alt border border-main shadow-lg focus:outline-none">
         <svg id="theme-toggle-dark-icon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
         <svg id="theme-toggle-light-icon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.707.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
     </button>
-
-    <header id="navbar" class="fixed top-0 left-0 right-0 z-40 transition-all duration-300">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="flex items-center space-x-2">
-                <svg class="w-8 h-8 text-primary" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A11.953 11.953 0 0 0 12 13.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 0 3 12c0 .778.099 1.533.284 2.253m0 0A11.953 11.953 0 0 1 12 10.5c2.998 0 5.74 1.1 7.843 2.918m-15.686 0A8.959 8.959 0 0 1 3 12c0-.778.099-1.533.284-2.253m0 0" /></svg>
-                <span class="text-xl font-bold text-main">CECOSESOLA</span>
-            </div>
-            
-            <nav class="hidden md:flex items-center space-x-8">
-                <a href="#servicios" class="text-alt hover:text-primary transition-colors duration-200">Servicios</a>
-                <a href="#quienes-somos" class="text-alt hover:text-primary transition-colors duration-200">Quiénes Somos</a>
-                <a href="#citas" class="text-alt hover:text-primary transition-colors duration-200">Contáctanos</a>
-            </nav>
-            
-            <div class="flex items-center space-x-4">
-                <a href="#citas" class="bg-primary text-white font-semibold px-4 py-2 rounded-lg hover:bg-opacity-90 transition-all duration-200 text-sm">Registrar Cita</a>
-                <button id="mobile-menu-button" class="md:hidden p-2 rounded-lg border border-main bg-main hover:bg-alt transition-colors duration-200">
-                    <svg id="menu-icon-open" class="w-6 h-6 text-main" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-                    <svg id="menu-icon-close" class="w-6 h-6 text-main hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                </button>
-            </div>
-        </div>
-        
-        <nav id="mobile-menu" class="absolute top-full left-0 right-0 bg-main border-b border-main shadow-lg md:hidden flex flex-col p-4 space-y-3 mobile-menu-closed">
-            <a href="#servicios" class="text-alt hover:text-primary transition-colors duration-200 p-2 rounded-lg hover:bg-alt text-lg">Servicios</a>
-            <a href="#quienes-somos" class="text-alt hover:text-primary transition-colors duration-200 p-2 rounded-lg hover:bg-alt text-lg">Quiénes Somos</a>
-            <a href="#citas" class="text-alt hover:text-primary transition-colors duration-200 p-2 rounded-lg hover:bg-alt text-lg">Contáctanos</a>
-        </nav>
-    </header>
-
-    <main>
-        
-        <section class="w-full pt-20 md:pt-24 bg-gradient-section">
-            <div id="carousel-container" class="relative container mx-auto max-w-6xl overflow-hidden rounded-2xl shadow-2xl">
-                <div id="carousel-slides" class="flex transition-transform duration-500 ease-in-out">
+    
+    <main>    
+            <section class="w-full pt-20 md:pt-24 bg-gradient-section">
+                <div id="carousel-container" class="relative w-full overflow-hidden">
+                    <div id="carousel-slides" class="flex transition-transform duration-500 ease-in-out">
                     <div class="carousel-item">
                         <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover">
                         <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center text-center p-8">
-                            <h2 class="text-4xl md:text-6xl font-bold text-white mb-6">Pide tu Cita</h2>
+                            <h2 class="text-4xl md:text-6xl font-bold text-white mb-6">PIDE TU CITA!</h2>
                             <p class="text-lg md:text-xl text-white max-w-lg mb-8">Agenda tu consulta de forma fácil y rápida con nosotros.</p>
                             <a href="#citas" class="bg-alt text-main font-semibold px-8 py-3 rounded-lg hover:bg-opacity-90 transition-all duration-200 transform hover:scale-105">Agendar Ahora</a>
                         </div>
@@ -83,7 +53,7 @@
             </div>
         </section>
 
-        <section class=" pt-16 pb-20 md:pt-24 md:pb-28 relative overflow-hidden">
+        <section class="mt-12 pt-16 pb-20 md:pt-24 md:pb-28 relative overflow-hidden">
             <div class="container mx-auto px-6 text-center md:text-left relative z-10">
                 <div class="grid md:grid-cols-2 gap-12 items-center">
                     <div class="flex flex-col items-center md:items-start">
@@ -106,85 +76,66 @@
         <section id="servicios" class="py-20 bg-gradient-section fade-in-section">
             <div class="container mx-auto px-6">
                 <div class="text-center max-w-3xl mx-auto">
-                    <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">Servicios Pensados para Ti</h2>
+                    <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">Servicios Pensados para Nosotros</h2>
                     <p class="text-alt mb-12">Ofrecemos una atención integral que abarca desde la prevención hasta tratamientos especializados, siempre con un enfoque humano y cooperativo.</p>
                 </div>
+
+
                 <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                     <div class="bg-main p-6 md:p-8 rounded-2xl border border-main text-center flex flex-col items-center transform hover:-translate-y-2 transition-transform duration-300 shadow-sm hover:shadow-xl">
-                        <div class="bg-accent bg-opacity-20 p-4 rounded-full mb-4"><svg class="w-8 h-8 text-primary" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.75v14.5m-6.364-3.864l12.728-7.772M6.364 3.864l12.728 7.772" /></svg></div>
-                        <h3 class="text-xl font-bold text-main mb-2">Medicina General</h3>
-                        <p class="text-alt flex-grow mb-4">Atención primaria para toda la familia, enfocada en la prevención y el cuidado continuo.</p>
-                        <a href="#" class="font-semibold text-primary hover:underline">Ver más</a>
+                        <div class="bg-accent bg-opacity-20 p-4 rounded-full mb-4"><svg class="w-8 h-8 text-primary" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 0 1-2.247 2.118H6.622a2.25 2.25 0 0 1-2.247-2.118L3.75 7.5m8.25 3.75h.008v.008H12v-.008zM12 11.25v2.25m-4.5 3.375h9" /></svg></div>
+                        <h3 class="text-xl font-bold text-main mb-2">Especialidades</h3>
+                        <p class="text-alt flex-grow mb-4">Descubre nuestras diversas áreas médicas. ¡Consulta tu especialista hoy!</p>
+                        <a href="#" class="font-semibold text-primary hover:underline">Consultar Especialidades</a>
                     </div>
                     <div class="bg-main p-6 md:p-8 rounded-2xl border border-main text-center flex flex-col items-center transform hover:-translate-y-2 transition-transform duration-300 shadow-sm hover:shadow-xl">
-                        <div class="bg-accent bg-opacity-20 p-4 rounded-full mb-4"><svg class="w-8 h-8 text-primary" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m5.231 13.481L15 17.25m-4.5-15H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" /></svg></div>
+                        <div class="bg-accent bg-opacity-20 p-4 rounded-full mb-4"><svg class="w-8 h-8 text-primary" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 7.25c0-.663.537-1.2 1.2-1.2h8.1c.663 0 1.2.537 1.2 1.2v10.5c0 .663-.537 1.2-1.2 1.2H7.95c-.663 0-1.2-.537-1.2-1.2V7.25zM12 14.25a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5z" /></svg></div>
                         <h3 class="text-xl font-bold text-main mb-2">Laboratorios</h3>
-                        <p class="text-alt flex-grow mb-4">Análisis clínicos con tecnología moderna y resultados confiables para un diagnóstico preciso.</p>
-                        <a href="#" class="font-semibold text-primary hover:underline">Ver más</a>
+                        <p class="text-alt flex-grow mb-4">Resultados rápidos y fiables. ¡Pide tu cita para análisis!</p>
+                        <a href="#" class="font-semibold text-primary hover:underline">Ver Pruebas</a>
                     </div>
                     <div class="bg-main p-6 md:p-8 rounded-2xl border border-main text-center flex flex-col items-center transform hover:-translate-y-2 transition-transform duration-300 shadow-sm hover:shadow-xl">
-                        <div class="bg-accent bg-opacity-20 p-4 rounded-full mb-4"><svg class="w-8 h-8 text-primary" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" /></svg></div>
-                        <h3 class="text-xl font-bold text-main mb-2">Especialistas</h3>
-                        <p class="text-alt flex-grow mb-4">Una red de especialistas comprometidos con tu bienestar en diversas áreas de la salud.</p>
-                        <a href="#" class="font-semibold text-primary hover:underline">Ver más</a>
+                        <div class="bg-accent bg-opacity-20 p-4 rounded-full mb-4"><svg class="w-8 h-8 text-primary" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5V19.5M19.5 12H4.5" /></svg></div>
+                        <h3 class="text-xl font-bold text-main mb-2">Radiografía</h3>
+                        <p class="text-alt flex-grow mb-4">Diagnósticos óseos y de tejidos. ¡Consulta disponibilidad y precio!</p>
+                        <a href="#" class="font-semibold text-primary hover:underline">Solicitar Radiografía</a>
                     </div>
                     <div class="bg-main p-6 md:p-8 rounded-2xl border border-main text-center flex flex-col items-center transform hover:-translate-y-2 transition-transform duration-300 shadow-sm hover:shadow-xl">
-                        <div class="bg-accent bg-opacity-20 p-4 rounded-full mb-4"><svg class="w-8 h-8 text-primary" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 0 1-2.247 2.118H6.622a2.25 2.25 0 0 1-2.247-2.118L3.75 7.5M10.5 11.25h3M12 15h.008" /></svg></div>
-                        <h3 class="text-xl font-bold text-main mb-2">Farmacia Cooperativa</h3>
-                        <p class="text-alt flex-grow mb-4">Medicamentos a precios justos, con la confianza y el respaldo de nuestra red cooperativa.</p>
-                        <a href="#" class="font-semibold text-primary hover:underline">Ver más</a>
+                        <div class="bg-accent bg-opacity-20 p-4 rounded-full mb-4"><svg class="w-8 h-8 text-primary" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l1.5-1.5a2.25 2.25 0 0 1 3 0l1.5 1.5M19.5 15.75l-1.5-1.5a2.25 2.25 0 0 0-3 0l-1.5 1.5m-6 2.25h.008v.008H12v-.008zm0 2.25h.008v.008H12v-.008zm-6-4.5h.008v.008H6v-.008z" /></svg></div>
+                        <h3 class="text-xl font-bold text-main mb-2">Mamografía</h3>
+                        <p class="text-alt flex-grow mb-4">Detección temprana del cáncer de mama. ¡Agenda tu mamografía!</p>
+                        <a href="#" class="font-semibold text-primary hover:underline">Pedir Cita</a>
+                    </div>
+                    <div class="bg-main p-6 md:p-8 rounded-2xl border border-main text-center flex flex-col items-center transform hover:-translate-y-2 transition-transform duration-300 shadow-sm hover:shadow-xl">
+                        <div class="bg-accent bg-opacity-20 p-4 rounded-full mb-4"><svg class="w-8 h-8 text-primary" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5H4.5M12 18V6" /></svg></div>
+                        <h3 class="text-xl font-bold text-main mb-2">Terapias</h3>
+                        <p class="text-alt flex-grow mb-4">Recupera tu bienestar con nuestros tratamientos. ¡Infórmate!</p>
+                        <a href="#" class="font-semibold text-primary hover:underline">Ver Opciones</a>
+                    </div>
+                    <div class="bg-main p-6 md:p-8 rounded-2xl border border-main text-center flex flex-col items-center transform hover:-translate-y-2 transition-transform duration-300 shadow-sm hover:shadow-xl">
+                        <div class="bg-accent bg-opacity-20 p-4 rounded-full mb-4"><svg class="w-8 h-8 text-primary" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3l.66 1.875M12 15l-1.5 2.25M15.75 3l-.66 1.875M12 18.75l-1.5-2.25L9.75 15m-3.75 0H2.25m3.75 0h1.5M12 15h.008v.008H12v-.008zm1.5-7.5l-1.5 2.25L10.5 15m-3.75 0l-.66-1.875M12 21l-1.5-2.25L9.75 15m0 0H2.25m3.75 0h1.5" /></svg> </div>
+                        <h3 class="text-xl font-bold text-main mb-2">Ecografía</h3>
+                        <p class="text-alt flex-grow mb-4">Imágenes internas sin radiación. ¡Consulta precios y pide tu cita!</p>
+                        <a href="#" class="font-semibold text-primary hover:underline">Solicitar Ecografía</a>
+                    </div>
+                    <div class="bg-main p-6 md:p-8 rounded-2xl border border-main text-center flex flex-col items-center transform hover:-translate-y-2 transition-transform duration-300 shadow-sm hover:shadow-xl">
+                        <div class="bg-accent bg-opacity-20 p-4 rounded-full mb-4"><svg class="w-8 h-8 text-primary" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.625 9.75h.008v.008H8.625v-.008zM12 9.75h.008v.008H12v-.008zM15.375 9.75h.008v.008H15.375v-.008zM12 21a9 9 0 100-18 9 9 0 000 18z" /></svg></div>
+                        <h3 class="text-xl font-bold text-main mb-2">Consultas</h3>
+                        <p class="text-alt flex-grow mb-4">Atención personalizada con nuestros expertos. ¡Agenda tu cita!</p>
+                        <a href="#" class="font-semibold text-primary hover:underline">Reservar Consulta</a>
+                    </div>
+                    <div class="bg-main p-6 md:p-8 rounded-2xl border border-main text-center flex flex-col items-center transform hover:-translate-y-2 transition-transform duration-300 shadow-sm hover:shadow-xl">
+                        <div class="bg-accent bg-opacity-20 p-4 rounded-full mb-4"><svg class="w-8 h-8 text-primary" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l1.5-1.5a2.25 2.25 0 0 1 3 0l1.5 1.5M19.5 15.75l-1.5-1.5a2.25 2.25 0 0 0-3 0l-1.5 1.5m-6 2.25h.008v.008H12v-.008zm0 2.25h.008v.008H12v-.008zm-6-4.5h.008v.008H6v-.008z" /></svg></div>
+                        <h3 class="text-xl font-bold text-main mb-2">Chequeos Generales</h3> <p class="text-alt flex-grow mb-4">Evaluación completa de tu salud. ¡Consulta paquetes y agenda!</p>
+                        <a href="#" class="font-semibold text-primary hover:underline">Ver Paquetes</a>
                     </div>
                 </div>
             </div>
         </section>
     </main>
     
-    <footer class="bg-footer text-footer pt-16 pb-8">
-        <div class="container mx-auto px-6">
-            <div class="grid md:grid-cols-4 gap-8 mb-8">
-                <!-- Columna 1: Logo y descripción -->
-                <div class="md:col-span-2 lg:col-span-1">
-                    <div class="flex items-center space-x-2 mb-4">
-                        <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A11.953 11.953 0 0 0 12 13.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 0 3 12c0 .778.099 1.533.284 2.253m0 0A11.953 11.953 0 0 1 12 10.5c2.998 0 5.74 1.1 7.843 2.918m-15.686 0A8.959 8.959 0 0 1 3 12c0-.778.099-1.533.284-2.253m0 0" />
-                        </svg>
-                        <span class="text-xl font-bold">CECOSESOLA</span>
-                    </div>
-                    <p class="text-sm opacity-80">Red de Salud CECOSESOLA – Cooperando por el bienestar de Barquisimeto.</p>
-                </div>
-                <!-- Columna 2: Enlaces Rápidos -->
-                <div>
-                    <h4 class="font-semibold mb-4">Navegación</h4>
-                    <ul class="space-y-2 text-sm opacity-80">
-                        <li><a href="#servicios" class="hover:opacity-100 transition">Servicios</a></li>
-                        <li><a href="#quienes-somos" class="hover:opacity-100 transition">Quiénes Somos</a></li>
-                        <li><a href="#citas" class="hover:opacity-100 transition">Agendar Cita</a></li>
-                    </ul>
-                </div>
-                <!-- Columna 3: Contacto -->
-                <div>
-                    <h4 class="font-semibold mb-4">Contacto</h4>
-                    <ul class="space-y-2 text-sm opacity-80">
-                        <li>Av. Venezuela, Barquisimeto</li>
-                        <li>+58 251-1234567</li>
-                        <li>contacto@cecosesola.com</li>
-                    </ul>
-                </div>
-                <!-- Columna 4: Redes Sociales -->
-                <div>
-                    <h4 class="font-semibold mb-4">Síguenos</h4>
-                    <div class="flex space-x-4">
-                        <a href="#" class="opacity-80 hover:opacity-100 transition"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M22.675 0h-21.35C.593 0 0 .593 0 1.325v21.351C0 23.407.593 24 1.325 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116c.732 0 1.325-.593 1.325-1.325V1.325C24 .593 23.407 0 22.675 0z"/></svg></a>
-                        <a href="#" class="opacity-80 hover:opacity-100 transition"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.011 3.585-.069 4.85c-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.585-.012-4.85-.07c-3.252-.148-4.771-1.691-4.919-4.919-.058-1.265-.07-1.645-.07-4.85s.012-3.585.07-4.85c.148-3.225 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.85-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948s.014 3.667.072 4.947c.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072s3.667-.014 4.947-.072c4.358-.2 6.78-2.618 6.98-6.98.059-1.281.073-1.689.073-4.948s-.014-3.667-.072-4.947c-.2-4.358-2.618-6.78-6.98-6.98C15.667.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z"/></svg></a>
-                    </div>
-                </div>
-            </div>
-            <div class="border-t border-white border-opacity-20 mt-8 pt-6 text-center text-sm opacity-70">
-                &copy; <span id="year"></span> CECOSESOLA – Barquisimeto. Todos los derechos reservados.
-            </div>
-        </div>
-    </footer>
-
+    
+    <div id="footer-placeholder"></div>
     <script src="script.js"></script>
 </body>
 </html>

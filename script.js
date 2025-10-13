@@ -1,16 +1,105 @@
+// --- FUNCIÓN PARA CARGAR PLANTILLAS (HEADER/FOOTER) ---
+async function loadTemplate(elementId, filePath) {
+    try {
+        console.log(`Intentando cargar plantilla: ${filePath}`);
+        const response = await fetch(filePath);
+
+        if (!response.ok) {
+            console.warn(`❌ Plantilla no encontrada: ${filePath}`);
+            return;
+        }
+
+        const html = await response.text();
+        const container = document.getElementById(elementId);
+
+        if (!container) {
+            console.error(`⚠️ No existe el contenedor con id: ${elementId}`);
+            return;
+        }
+
+        container.innerHTML = html;
+        console.log(`✅ Plantilla cargada en: #${elementId}`);
+
+        // Configurar menú móvil después de insertar el header
+        if (elementId === 'header-placeholder') {
+            requestAnimationFrame(() => {
+                console.log("🔧 Configurando menú móvil...");
+                setupMobileMenu();
+            });
+        }
+
+        // Configurar año del footer si aplica
+        if (elementId === 'footer-placeholder') {
+            const yearElement = document.getElementById('year');
+            if (yearElement) {
+                yearElement.textContent = new Date().getFullYear();
+            }
+        }
+
+    } catch (error) {
+        console.error("Error cargando plantilla:", error);
+    }
+}
+
+
+// --- CONFIGURACIÓN DEL MENÚ MÓVIL ---
+function setupMobileMenu() {
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIconOpen = document.getElementById('menu-icon-open');
+    const menuIconClose = document.getElementById('menu-icon-close');
+
+    console.log("mobileMenuButton:", mobileMenuButton);
+    console.log("mobileMenu:", mobileMenu);
+
+    if (mobileMenuButton && mobileMenu) {
+        mobileMenuButton.addEventListener('click', () => {
+            console.log("👉 Clic en botón móvil");
+            const isOpen = mobileMenu.classList.toggle('mobile-menu-open');
+            menuIconOpen.classList.toggle('hidden', isOpen);
+            menuIconClose.classList.toggle('hidden', !isOpen);
+        });
+
+        // Cerrar el menú al hacer clic en un enlace
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('mobile-menu-open');
+                menuIconOpen.classList.remove('hidden');
+                menuIconClose.classList.add('hidden');
+            });
+        });
+
+        console.log("✅ Listeners configurados correctamente.");
+    } else {
+        console.warn("❌ No se encontró el botón o el menú móvil en el DOM.");
+    }
+}
+
+
+// --- EJECUCIÓN AL CARGAR LA PÁGINA ---
+document.addEventListener('DOMContentLoaded', () => {
+    loadTemplate('header-placeholder', 'includes/navbar.html');
+    loadTemplate('footer-placeholder', 'includes/footer.html');
+});
+// --- FIN DE LÓGICA REUTILIZABLE ---
+
+
 document.addEventListener('DOMContentLoaded', function() {
     
-    // --- Lógica del Navbar al hacer scroll ---
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            navbar.classList.add('navbar-scrolled');
-        } else {
-            navbar.classList.remove('navbar-scrolled');
-        }
-    });
+    // CARGAR PLANTILLAS AL INICIO
+    // Nota: Asume que tienes una estructura de carpetas como:
+    // index.html
+    // includes/navbar.html
+    // includes/footer.html
+    loadTemplate('header-placeholder', 'includes/navbar.html');
+    loadTemplate('footer-placeholder', 'includes/footer.html');
 
-    // --- LÓGICA DEL NUEVO CARRUSEL DESLIZABLE ---
+    // --- Carga Condicional de la Sección de Citas ---
+    if (document.getElementById('citas-placeholder')) {
+        loadTemplate('citas-placeholder', 'includes/citas-section.html');
+    }
+
+    // --- LÓGICA DEL CARRUSEL ---
     const slidesContainer = document.getElementById('carousel-slides');
     if (slidesContainer) {
         const slides = document.querySelectorAll('.carousel-item');
@@ -38,57 +127,46 @@ document.addEventListener('DOMContentLoaded', function() {
         setInterval(() => {
             currentSlide = (currentSlide + 1) % totalSlides;
             updateCarousel();
-        }, 7000); // Cambia cada 7 segundos
+        }, 5000); 
     }
+    // ... fin del código del carrusel ...
 
-    // --- Animación de entrada de secciones ---
-    const sections = document.querySelectorAll('.fade-in-section');
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('is-visible');
-                observer.unobserve(entry.target);
+    // --- LÓGICA DEL DESPLIEGUE DE DOCTORES EN ESPECIALIDADES ---
+    const specialtyCards = document.querySelectorAll('.specialty-card');
+
+    specialtyCards.forEach(card => {
+        card.addEventListener('click', (event) => {
+            const doctorList = card.querySelector('.doctor-list');
+            const arrowIcon = card.querySelector('.arrow-icon');
+            
+            // Si el clic fue en el botón de Agendar Cita, no hacer nada más
+            if (event.target.tagName === 'A' && event.target.textContent.includes('Agendar Cita')) {
+                return;
+            }
+
+            // Toggle de la visibilidad y estilos
+            const isOpening = doctorList.classList.contains('hidden');
+
+            // Cerramos cualquier otra tarjeta abierta (para efecto "acordeón")
+            document.querySelectorAll('.doctor-list').forEach(list => list.classList.add('hidden'));
+            document.querySelectorAll('.arrow-icon').forEach(icon => icon.classList.remove('rotate-180'));
+            document.querySelectorAll('.specialty-card').forEach(c => c.classList.remove('shadow-xl'));
+
+            if (isOpening) {
+                doctorList.classList.remove('hidden');
+                arrowIcon.classList.add('rotate-180');
+                card.classList.add('shadow-xl');
             }
         });
-    }, { threshold: 0.1 });
-
-    sections.forEach(section => {
-        observer.observe(section);
     });
+    // --- FIN LÓGICA DE DESPLIEGUE ---    
 
-    // --- Lógica de la sección de citas ---
-    const loginView = document.getElementById('login-view');
-    const appointmentForm = document.getElementById('appointment-form');
-    const googleLoginBtn = document.getElementById('google-login-btn');
-    
-    if(googleLoginBtn) {
-        googleLoginBtn.addEventListener('click', () => {
-            loginView.classList.add('hidden');
-            appointmentForm.classList.remove('hidden');
-        });
-    }
-    
-    if (appointmentForm) {
-        appointmentForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('¡Cita confirmada! (Esto es una demostración)');
-            appointmentForm.classList.add('hidden');
-            loginView.classList.remove('hidden');
-        });
-    }
-    
-    // --- Actualizar año en el footer ---
-    const yearSpan = document.getElementById('year');
-    if(yearSpan) {
-        yearSpan.textContent = new Date().getFullYear();
-    }
-    
-    // --- Lógica del Modo Oscuro/Claro ---
+    // --- Lógica del Botón de Modo Oscuro --
     const themeToggleBtn = document.getElementById('theme-toggle');
     const darkIcon = document.getElementById('theme-toggle-dark-icon');
     const lightIcon = document.getElementById('theme-toggle-light-icon');
-
-    const applyTheme = (theme) => {
+    
+    function applyTheme(theme) {
         if (theme === 'dark') {
             document.documentElement.classList.add('dark');
             darkIcon.classList.remove('hidden');
@@ -109,27 +187,17 @@ document.addEventListener('DOMContentLoaded', function() {
         applyTheme(newTheme);
     });
 
-    // --- Lógica del Menú Móvil Desplegable ---
-    const mobileMenuButton = document.getElementById('mobile-menu-button');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const menuIconOpen = document.getElementById('menu-icon-open');
-    const menuIconClose = document.getElementById('menu-icon-close');
+    // --- Lógica de Animación de Scroll para secciones (ejemplo) --
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+            }
+        });
+    }, { threshold: 0.1 });
 
-    mobileMenuButton.addEventListener('click', () => {
-        const isOpen = mobileMenu.classList.toggle('mobile-menu-open');
-        mobileMenu.classList.toggle('mobile-menu-closed');
-        
-        menuIconOpen.classList.toggle('hidden', isOpen);
-        menuIconClose.classList.toggle('hidden', !isOpen);
+    document.querySelectorAll('.fade-in-section').forEach(section => {
+        observer.observe(section);
     });
     
-    document.querySelectorAll('#mobile-menu a').forEach(link => {
-        link.addEventListener('click', () => {
-            mobileMenu.classList.remove('mobile-menu-open');
-            mobileMenu.classList.add('mobile-menu-closed');
-            menuIconOpen.classList.remove('hidden');
-            menuIconClose.classList.add('hidden');
-        });
-    });
-
 });
