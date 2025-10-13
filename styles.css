@@ -71,28 +71,42 @@ main {
 
 
 
+/* ... (El resto de tus variables y estilos base) ... */
+
 /* ============================================== */
-/* ESTILOS PARA LA FUNCIONALIDAD DEL MENÚ MÓVIL (CORRECCIÓN VITAL) */
+/* ESTILOS PARA LA FUNCIONALIDAD DEL MENÚ MÓVIL */
 /* ============================================== */
 
-/* 1. Estado Inicial: Oculto por defecto (mobile-menu-closed) */
-/* 1. Estado por defecto (cerrado): Utiliza la animación para ocultar */
+/* 1. Estado Inicial: Oculto por defecto */
 #mobile-menu {
-    /* Estado inicial de la animación */
+    /* Clases de animación y transición */
     opacity: 0;
-    visibility: hidden; /* Oculta completamente, no solo visualmente */
+    visibility: hidden; 
     transform: translateY(-5px); 
     transition: opacity 0.3s ease-out, transform 0.3s ease-out, visibility 0.3s;
-    pointer-events: none; /* Previene clics en los enlaces invisibles */
+    pointer-events: none;
+    
+    /* CRÍTICO: Ocultar completamente, ignorando md:hidden de Tailwind */
+    display: none; 
 }
 
-/* 2. Estado Activo (abierto): Anula los estilos de ocultamiento */
+/* 2. Estado Activo (abierto): Mostrar con la animación */
 #mobile-menu.mobile-menu-open {
-    /* Estado final de la animación */
+    /* Clases de animación y transición */
     opacity: 1;
     visibility: visible;
     transform: translateY(0); 
-    pointer-events: auto; /* Permite clics */
+    pointer-events: auto;
+    
+    /* CRÍTICO: Mostrar como flex-box */
+    display: flex; 
+}
+
+/* 3. Asegurar ocultamiento en Desktop (Para evitar conflictos si Tailwind falla) */
+@media (min-width: 768px) {
+    #mobile-menu {
+        display: none !important; 
+    }
 }
 
 /* 3. Asegurar ocultamiento en Desktop (mantener) */
