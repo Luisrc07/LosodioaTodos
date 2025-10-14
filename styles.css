@@ -2,28 +2,40 @@
 :root {
     --color-bg: #FFFFFF;
     --color-bg-alt: #DDF4E7; /* Este es un verde claro/gris, usado en secciones alternativas */
-    --color-text: #124170;
-    --color-text-alt: #26667F;
-    --color-primary: #26667F;
+    --color-text: #01312d;
+    --color-text-alt: #01312d;
+    --color-primary: #01312d;
     --color-primary-light: #67C090;
     --color-accent: #67C090;
     --color-border: #cde2d4;
-    --color-footer-bg: #0d724b;
+    --color-footer-bg: #01312d;
     --color-footer-text: #DDF4E7;
+
+    /*harrison cree una nueva clase para el dise;o de los botones con colores beige, tanto las letras como el color del boton, son los dos de abajo*/
+    --color-pr: #092c18;
+    --color-text-pr: #ffffff ;
 }
 
 /* Configuración del modo oscuro */
 .dark {
-    --color-bg: #0d2c4a;
-    --color-bg-alt: #124170;
-    --color-text: #DDF4E7;
-    --color-text-alt: #a7d9bb;
-    --color-primary: #67C090;
-    --color-primary-light: #85d1a7;
+
+    --color-bg: #01312d;
+    --color-bg-alt: #67C090;
+    --color-text: #ffffff;
+    --color-text-alt: #ffffff;
+    --color-primary: #ffffff;
+    --color-primary-light: #ffffff;
     --color-accent: #DDF4E7;
     --color-border: #26667F;
-    --color-footer-bg: #081a2e;
-    --color-footer-text: #DDF4E7;
+    --color-footer-bg: #e3e4bf;
+    --color-footer-text: #092c18;
+
+    /*las clases creadas mediante tailwind pero en version obscuro. Como podra observar tanto en el modo claro y el modo obscuro tienen el mismo color, pero se le puede cambiar
+    si se tiene conocimiento del codigo de cualquier paleta de color*/
+    --color-pr: #d9d99b;
+    --color-text-pr: #092c18 ;
+
+    /*las separe para que puedas identificarlas mas rapido*/
 }
 
 body {
@@ -41,6 +53,8 @@ main {
 }
 
 /* Clases de utilidad para temas */
+.text-pr { color: var(--color-text-pr); }
+.color-pr { background-color: var(--color-pr); }
 .bg-main { background-color: var(--color-bg); }
 .text-main { color: var(--color-text); }
 .bg-alt { background-color: var(--color-bg-alt); }
