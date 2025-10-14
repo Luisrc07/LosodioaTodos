@@ -124,21 +124,19 @@ main {
     transform: translateY(0);
 }
 
-/* ========== ESTILOS PARA EL CARRUSEL ========== */
-#carousel-slides {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-}
+/* ========== ESTILOS PARA EL CARRUSEL (Modificado) ========== */
 
 .carousel-item {
     min-width: 100%;
     position: relative;
-    aspect-ratio: 16 / 7; 
+    /* CAMBIO CLAVE: Usa 16/9 o 16/8 para que sea menos alto en móvil */
+    aspect-ratio: 16 / 9; 
 }
 
 @media (min-width: 768px) {
     .carousel-item {
-        aspect-ratio: 16 / 4; /* Proporción 16:5 para más ancho en desktop */
+        /* Mantener la proporción para desktop, quizás 16 / 5 para hacerlo más panorámico */
+        aspect-ratio: 16 / 5; 
     }
 }
 
@@ -146,20 +144,21 @@ main {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background-color: rgba(255, 255, 255, 0.5);
-    color: #124170;
+    /* Aumentar Z-INDEX para asegurar que el botón esté encima de todo */
+    z-index: 20; 
+    
+    color: var(--color-primary); /* Usar el color principal */
     border-radius: 9999px;
-    width: 3rem; 
-    height: 3rem; 
+    /* Reducir el tamaño del botón para móvil */
+    width: 2.5rem; 
+    height: 2.5rem; 
     display: flex;
     align-items: center;
     justify-content: center;
     transition: background-color 0.2s ease, transform 0.2s ease;
 }
-.carousel-nav-btn:hover {
-    background-color: rgba(255, 255, 255, 0.9);
-    transform: translateY(-50%) scale(1.1);
-}
+
+
 .dark .carousel-nav-btn {
     background-color: rgba(13, 44, 74, 0.5);
     color: #DDF4E7;
@@ -168,5 +167,7 @@ main {
     background-color: rgba(13, 44, 74, 0.8);
     transform: translateY(-50%) scale(1.1);
 }
-.carousel-prev { left: 1rem; }
-.carousel-next { right: 1rem; }
+
+/* Ajuste de posición para que no se peguen a los bordes */
+.carousel-prev { left: 0.5rem; } 
+.carousel-next { right: 0.5rem; }

@@ -1,5 +1,11 @@
-// --- FUNCIÓN PARA CARGAR PLANTILLAS (HEADER/FOOTER) ---
+// --- FUNCIÓN PARA CARGAR PLANTILLAS (Solo para el Footer) ---
 async function loadTemplate(elementId, filePath) {
+    // Solo cargaremos si el ID es 'footer-placeholder'
+    if (elementId !== 'footer-placeholder') {
+        console.warn(`Función loadTemplate omitida para: #${elementId}. El contenido debe estar en el HTML.`);
+        return;
+    }
+
     try {
         console.log(`Intentando cargar plantilla: ${filePath}`);
         const response = await fetch(filePath);
@@ -19,21 +25,11 @@ async function loadTemplate(elementId, filePath) {
 
         container.innerHTML = html;
         console.log(`✅ Plantilla cargada en: #${elementId}`);
-
-        // Configurar menú móvil después de insertar el header
-        if (elementId === 'header-placeholder') {
-            requestAnimationFrame(() => {
-                console.log("🔧 Configurando menú móvil...");
-                setupMobileMenu();
-            });
-        }
-
-        // Configurar año del footer si aplica
-        if (elementId === 'footer-placeholder') {
-            const yearElement = document.getElementById('year');
-            if (yearElement) {
-                yearElement.textContent = new Date().getFullYear();
-            }
+        
+        // Configurar año del footer
+        const yearElement = document.getElementById('year');
+        if (yearElement) {
+            yearElement.textContent = new Date().getFullYear();
         }
 
     } catch (error) {
@@ -42,25 +38,30 @@ async function loadTemplate(elementId, filePath) {
 }
 
 
-// --- CONFIGURACIÓN DEL MENÚ MÓVIL ---
+// -----------------------------------------------
+// --- CONFIGURACIÓN DEL MENÚ MÓVIL (CORREGIDO) ---
+// -----------------------------------------------
 function setupMobileMenu() {
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
     const menuIconOpen = document.getElementById('menu-icon-open');
     const menuIconClose = document.getElementById('menu-icon-close');
 
-    console.log("mobileMenuButton:", mobileMenuButton);
-    console.log("mobileMenu:", mobileMenu);
-
     if (mobileMenuButton && mobileMenu) {
+        console.log("✅ Elementos de Menú Móvil encontrados. Configurando listeners.");
+
         mobileMenuButton.addEventListener('click', () => {
-            console.log("👉 Clic en botón móvil");
+            console.log("👉 Clic en botón móvil: Toggling menu");
+            
+            // 1. Alterna la clase CSS 'mobile-menu-open' (definida en styles.css)
             const isOpen = mobileMenu.classList.toggle('mobile-menu-open');
+            
+            // 2. Alterna los iconos de hamburguesa a 'X' (y viceversa)
             menuIconOpen.classList.toggle('hidden', isOpen);
             menuIconClose.classList.toggle('hidden', !isOpen);
         });
 
-        // Cerrar el menú al hacer clic en un enlace
+        // Opcional: Cerrar el menú al hacer clic en un enlace
         document.querySelectorAll('#mobile-menu a').forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.remove('mobile-menu-open');
@@ -69,37 +70,31 @@ function setupMobileMenu() {
             });
         });
 
-        console.log("✅ Listeners configurados correctamente.");
     } else {
+        // Esto solo debería aparecer si se elimina el navbar del HTML
         console.warn("❌ No se encontró el botón o el menú móvil en el DOM.");
     }
 }
 
 
+// -----------------------------------------------
 // --- EJECUCIÓN AL CARGAR LA PÁGINA ---
-document.addEventListener('DOMContentLoaded', () => {
-    loadTemplate('header-placeholder', 'includes/navbar.html');
-    loadTemplate('footer-placeholder', 'includes/footer.html');
-});
-// --- FIN DE LÓGICA REUTILIZABLE ---
-
-
+// -----------------------------------------------
 document.addEventListener('DOMContentLoaded', function() {
     
-    // CARGAR PLANTILLAS AL INICIO
-    // Nota: Asume que tienes una estructura de carpetas como:
-    // index.html
-    // includes/navbar.html
-    // includes/footer.html
-    loadTemplate('header-placeholder', 'includes/navbar.html');
+    // 1. INICIALIZAR MENÚ MÓVIL
+    // Esta función se llama directamente porque el navbar ya está en el HTML.
+    setupMobileMenu(); 
+    
+    // 2. CARGAR EL FOOTER
     loadTemplate('footer-placeholder', 'includes/footer.html');
-
-    // --- Carga Condicional de la Sección de Citas ---
+    
+    // 3. Carga Condicional de la Sección de Citas (se mantiene tu lógica)
     if (document.getElementById('citas-placeholder')) {
         loadTemplate('citas-placeholder', 'includes/citas-section.html');
     }
 
-    // --- LÓGICA DEL CARRUSEL ---
+    // 4. LÓGICA DEL CARRUSEL (Se mantiene la lógica original)
     const slidesContainer = document.getElementById('carousel-slides');
     if (slidesContainer) {
         const slides = document.querySelectorAll('.carousel-item');
@@ -123,7 +118,7 @@ document.addEventListener('DOMContentLoaded', function() {
             updateCarousel();
         });
 
-        // Opcional: auto-play
+        // Auto-play
         setInterval(() => {
             currentSlide = (currentSlide + 1) % totalSlides;
             updateCarousel();
@@ -131,7 +126,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     // ... fin del código del carrusel ...
 
-    // --- LÓGICA DEL DESPLIEGUE DE DOCTORES EN ESPECIALIDADES ---
+    // 5. LÓGICA DEL DESPLIEGUE DE DOCTORES (Se mantiene la lógica original)
     const specialtyCards = document.querySelectorAll('.specialty-card');
 
     specialtyCards.forEach(card => {
@@ -139,15 +134,11 @@ document.addEventListener('DOMContentLoaded', function() {
             const doctorList = card.querySelector('.doctor-list');
             const arrowIcon = card.querySelector('.arrow-icon');
             
-            // Si el clic fue en el botón de Agendar Cita, no hacer nada más
             if (event.target.tagName === 'A' && event.target.textContent.includes('Agendar Cita')) {
                 return;
             }
 
-            // Toggle de la visibilidad y estilos
             const isOpening = doctorList.classList.contains('hidden');
-
-            // Cerramos cualquier otra tarjeta abierta (para efecto "acordeón")
             document.querySelectorAll('.doctor-list').forEach(list => list.classList.add('hidden'));
             document.querySelectorAll('.arrow-icon').forEach(icon => icon.classList.remove('rotate-180'));
             document.querySelectorAll('.specialty-card').forEach(c => c.classList.remove('shadow-xl'));
@@ -159,9 +150,8 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-    // --- FIN LÓGICA DE DESPLIEGUE ---    
 
-    // --- Lógica del Botón de Modo Oscuro --
+    // 6. Lógica del Botón de Modo Oscuro (Se mantiene la lógica original)
     const themeToggleBtn = document.getElementById('theme-toggle');
     const darkIcon = document.getElementById('theme-toggle-dark-icon');
     const lightIcon = document.getElementById('theme-toggle-light-icon');
@@ -187,7 +177,7 @@ document.addEventListener('DOMContentLoaded', function() {
         applyTheme(newTheme);
     });
 
-    // --- Lógica de Animación de Scroll para secciones (ejemplo) --
+    // 7. Lógica de Animación de Scroll (Se mantiene la lógica original)
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -199,5 +189,4 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.fade-in-section').forEach(section => {
         observer.observe(section);
     });
-    
 });
