@@ -17,8 +17,8 @@
 }
 
 /* Configuración del modo oscuro */
+/* Configuración del modo oscuro */
 .dark {
-
     --color-bg: #01312d;
     --color-bg-alt: #67C090;
     --color-text: #ffffff;
@@ -29,15 +29,15 @@
     --color-border: #26667F;
     --color-footer-bg: #e3e4bf;
     --color-footer-text: #092c18;
-
-    /*las clases creadas mediante tailwind pero en version obscuro. Como podra observar tanto en el modo claro y el modo obscuro tienen el mismo color, pero se le puede cambiar
-    si se tiene conocimiento del codigo de cualquier paleta de color*/
     --color-pr: #d9d99b;
-    --color-text-pr: #092c18 ;
+    --color-text-pr: #092c18;
 
-    /*las separe para que puedas identificarlas mas rapido*/
+    /* ===== INICIO: NUEVA REGLA PARA ICONOS IMG EN MODO OSCURO ===== */
+    .service-icon {
+        filter: invert(1); /* Invierte el color de la imagen (negro -> blanco) */
+    }
+    /* ===== FIN: NUEVA REGLA ===== */
 }
-
 body {
     font-family: 'Inter', sans-serif;
     min-height: 100vh; 
@@ -82,7 +82,69 @@ main {
     transition: all 0.3s ease;
 }
 
+/* ===== INICIO: NUEVOS ESTILOS PARA NAVBAR ===== */
 
+/* Estilo para el enlace activo en el navbar */
+/* Estilo para el enlace activo en el navbar */
+.nav-link.active {
+    color: var(--color-accent);
+    font-weight: 600;
+    position: relative;
+}
+
+/* Pequeña línea debajo del enlace activo */
+.nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 24px;
+    height: 3px;
+    background-color: var(--color-accent);
+    border-radius: 2px;
+}
+
+/* Estilos para el menú desplegable de Servicios */
+.dropdown-menu {
+    position: absolute;
+    top: calc(100% + 10px); /* Un poco de espacio desde el botón */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 0.75rem; /* 12px */
+    padding: 0.5rem; /* 8px */
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    min-width: 180px;
+    z-index: 50;
+    opacity: 0;
+    visibility: hidden;
+    transform-origin: top center;
+    transition: opacity 0.2s ease-out, transform 0.2s ease-out, visibility 0.2s;
+    transform: translateX(-50%) scale(0.95);
+}
+
+.dropdown-menu.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) scale(1);
+}
+
+.dropdown-item {
+    display: block;
+    padding: 0.5rem 1rem; /* 8px 16px */
+    color: var(--color-text-alt);
+    border-radius: 0.5rem; /* 8px */
+    transition: background-color 0.2s, color 0.2s;
+    white-space: nowrap;
+}
+
+.dropdown-item:hover {
+    background-color: var(--color-bg-alt);
+    color: var(--color-primary);
+}
+/* ===== FIN: NUEVOS ESTILOS PARA NAVBAR ===== */
 
 
 /* ============================================== */
@@ -173,4 +235,10 @@ main {
 .carousel-next { right: 0.5rem; }
 
 
-
+/* --- INICIO: ESTILOS ADICIONALES PARA EL SWIPE DE LA GALERÍA --- */
+#gallery-slides {
+    cursor: grab; /* Indica que el elemento es arrastrable en desktop */
+    user-select: none; /* Evita que el texto o las imágenes se seleccionen al arrastrar */
+    -webkit-user-select: none; /* Para compatibilidad con navegadores más antiguos */
+}
+/* --- FIN: ESTILOS ADICIONALES --- */
