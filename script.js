@@ -126,6 +126,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     // ... fin del código del carrusel ...
 
+
     // 5. LÓGICA DEL DESPLIEGUE DE DOCTORES (Se mantiene la lógica original)
     const specialtyCards = document.querySelectorAll('.specialty-card');
 

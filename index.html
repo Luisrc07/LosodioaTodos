@@ -23,9 +23,12 @@
 
         <nav class="hidden md:flex items-center space-x-8">
             <a href="index.html" class="text-alt hover:text-primary transition-colors duration-200">Home</a>
+            <a href="especialidades.html" class="text-alt hover:text-primary transition-colors duration-200">Especialidades</a>
+            <a href="especialidades.html" class="text-alt hover:text-primary transition-colors duration-200">Laboratorio</a>
+            <a href="#quienes-somos" class="text-alt hover:text-primary transition-colors duration-200">Servicios</a>
             <a href="#quienes-somos" class="text-alt hover:text-primary transition-colors duration-200">Quiénes Somos</a>
             <a href="#citas" class="text-alt hover:text-primary transition-colors duration-200">Contáctanos</a>
-            <a href="especialidades.html" class="text-alt hover:text-primary transition-colors duration-200">Especialidades</a>
+            
         </nav>
         
         <div class="flex items-center space-x-4">
@@ -40,10 +43,12 @@
     </div>
     
     <nav id="mobile-menu" class="absolute top-full left-0 right-0 bg-main border-b border-main shadow-lg md:hidden flex flex-col p-4 space-y-3">
-        <a href="#servicios" class="text-alt hover:text-primary transition-colors duration-200 p-2 rounded-lg hover:bg-alt text-lg">Servicios</a>
+        <a href="index.html" class="text-alt hover:text-primary transition-colors duration-200 p-2 rounded-lg hover:bg-alt text-lg">Home</a>
+        <a href="especialidades.html" class="text-alt hover:text-primary transition-colors duration-200 p-2 rounded-lg hover:bg-alt text-lg">Especialidades</a>
+        <a href="#servicios" class="text-alt hover:text-primary transition-colors duration-200 p-2 rounded-lg hover:bg-alt text-lg">Laboratorio</a>
+        <a href="especialidades.html" class="text-alt hover:text-primary transition-colors duration-200 p-2 rounded-lg hover:bg-alt text-lg">Servicios</a>
         <a href="#quienes-somos" class="text-alt hover:text-primary transition-colors duration-200 p-2 rounded-lg hover:bg-alt text-lg">Quiénes Somos</a>
         <a href="#citas" class="text-alt hover:text-primary transition-colors duration-200 p-2 rounded-lg hover:bg-alt text-lg">Contáctanos</a>
-        <a href="especialidades.html" class="text-alt hover:text-primary transition-colors duration-200 p-2 rounded-lg hover:bg-alt text-lg">Especialidades</a>
     </nav>
 </header>
     <button id="theme-toggle" class="fixed bottom-5 right-5 z-50 p-3 rounded-full bg-alt border border-main shadow-lg focus:outline-none">
@@ -103,7 +108,7 @@
                         </div>
                     </div>
                     <div class="hidden md:block">
-                        <img src="https://placehold.co/600x450/7FCB87/FFFFFF?text=Bienestar+Comunitario" alt="Ilustración de comunidad y salud" class="rounded-2xl shadow-xl">
+                        <img src="img/logotipo.png" alt="Ilustración de comunidad y salud" class="rounded-2xl shadow-xl">
                     </div>
                 </div>
             </div>
@@ -170,6 +175,44 @@
                 </div>
             </div>
         </section>
+
+
+
+       <section class="mt-12 pt-16 pb-20 md:pt-24 md:pb-28 relative overflow-hidden">
+    <div class="container mx-auto px-6 text-center md:text-left relative z-10">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            
+            <div class="flex flex-col items-center md:items-start"> 
+                <h1 class="text-4xl md:text-6xl font-bold text-main leading-tight mb-4">Conoce Nuestras Instalaciones</h1>
+                <p class="text-lg text-alt max-w-lg mb-8">Te invitamos a recorrer los espacios modernos y funcionales diseñados para tu comodidad y bienestar. </p>
+                <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a href="#servicios" class="color-pr text-pr font-semibold px-8 py-3 rounded-lg hover:bg-opacity-90 transition-all duration-200 transform hover:scale-105 btn-pulse">Ver Servicios</a>
+                    <a href="#quienes-somos" class="bg-alt text-main font-semibold px-8 py-3 rounded-lg hover:bg-opacity-90 transition-all duration-200 transform hover:scale-105">Agendar Cita</a>
+                </div>
+            </div>
+            
+            <div class="w-full"> 
+                            <div id="gallery-carousel-container" class="relative rounded-2xl shadow-xl aspect-[4/5] md:aspect-[4/3] overflow-hidden">
+                                
+                                <div id="gallery-slides" class="flex h-full"> 
+                                    
+                                    <div class="carousel-item-vertical flex-shrink-0 w-full h-full"><img src="img/aleroarquitectura-yusoproyectos-centro-cooperativo-salud-cics-03-e1596526294460.jpg" alt="Instalación 1" class="w-full h-full object-cover"></div>
+                                    <div class="carousel-item-vertical flex-shrink-0 w-full h-full"><img src="img/escaleras.jpg" alt="Instalación 2" class="w-full h-full object-cover"></div>
+                                    <div class="carousel-item-vertical flex-shrink-0 w-full h-full"><img src="img/instalacion-3.jpg" alt="Instalación 3" class="w-full h-full object-cover"></div>
+                                    <div class="carousel-item-vertical flex-shrink-0 w-full h-full"><img src="img/instalacion-4.jpg" alt="Instalación 4" class="w-full h-full object-cover"></div>
+                                    <div class="carousel-item-vertical flex-shrink-0 w-full h-full"><img src="img/instalacion-5.jpg" alt="Instalación 5" class="w-full h-full object-cover"></div>
+                                </div>
+                                
+                                <button id="gallery-prev" class="hidden md:block absolute top-1/2 left-4 transform -translate-y-1/2 z-20 bg-main bg-opacity-70 p-2 rounded-full shadow-md hover:bg-opacity-90 transition"><svg class="w-6 h-6 text-primary" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" /></svg></button>
+                                <button id="gallery-next" class="hidden md:block absolute top-1/2 right-4 transform -translate-y-1/2 z-20 bg-main bg-opacity-70 p-2 rounded-full shadow-md hover:bg-opacity-90 transition"><svg class="w-6 h-6 text-primary" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" /></svg></button>
+                            </div>
+            </div>
+        </div>
+    </div>
+    <div class="absolute -top-40 -right-40 w-96 h-96 bg-accent opacity-20 rounded-full filter blur-3xl dark:opacity-10"></div>
+    <div class="absolute bottom-0 -left-20 w-80 h-80 bg-primary opacity-10 rounded-full filter blur-3xl dark:opacity-5"></div>
+</section>
+
     </main>
     <a id="floating-cita-btn" href="#citas" class="
         fixed bottom-5 left-1/2 transform -translate-x-1/2 
