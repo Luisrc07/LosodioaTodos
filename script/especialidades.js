@@ -29,6 +29,35 @@ function setupSpecialtyToggle() {
     });
 }
 
+/**
+ * ¡RESTAURADO! Configura el acordeón de especialidades.
+ */
+function setupSpecialtiesAccordion() {
+    const specialtyCards = document.querySelectorAll('.specialty-card');
+    specialtyCards.forEach(card => {
+        card.addEventListener('click', (event) => {
+            // Evita que el clic en el botón "Agendar" active el acordeón
+            if (event.target.closest('a')) {
+                return;
+            }
+            
+            const doctorList = card.querySelector('.doctor-list');
+            const arrowIcon = card.querySelector('.arrow-icon');
+            const isOpening = doctorList.classList.contains('hidden');
+
+            // Cierra todos los demás
+            document.querySelectorAll('.doctor-list').forEach(list => list.classList.add('hidden'));
+            document.querySelectorAll('.arrow-icon').forEach(icon => icon.classList.remove('rotate-180'));
+            
+            // Abre o cierra el actual
+            if (isOpening) {
+                doctorList.classList.remove('hidden');
+                arrowIcon.classList.add('rotate-180');
+            }
+        });
+    });
+}
+
 // Función de inicialización para Especialidades.html (llamada desde global.js)
 function initEspecialidadesPage() {
     setupSpecialtyToggle();

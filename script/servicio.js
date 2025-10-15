@@ -1,5 +1,5 @@
 // ===================================================================
-// --- DATOS DE SERVICIOS (Restaurados de tu script.js original) ---
+// --- DATOS DE SERVICIOS ---
 // ===================================================================
 const serviceData = {
     laboratorio: {
@@ -115,92 +115,85 @@ const serviceData = {
     },
 };
 
-// Genera la tabla de precios
+// ===================================================================
+// --- FUNCIONES ESPECÍFICAS DE SERVICIOS.HTML ---
+// ===================================================================
+
+// En tu archivo script.js:
 function generatePriceTable(prices) {
     let tableHTML = `
         <table class="min-w-full divide-y divide-border dark:divide-primary/20">
             <thead class="bg-primary/10 dark:bg-primary/20">
                 <tr>
                     <th class="px-4 py-2 text-left text-sm font-medium text-primary dark:text-primary uppercase tracking-wider">Servicio</th>
-                    <th class="px-4 py-2 text-left text-sm font-medium text-primary dark:text-primary uppercase tracking-wider">Precio</th>
-                    <th class="px-4 py-2 text-left text-sm font-medium text-primary dark:text-primary uppercase tracking-wider">Código</th>
+                    <th class="px-4 py-2 text-left text-sm font-medium text-primary dark:text-primary uppercase tracking-wider">Precio Estimado</th>
                 </tr>
             </thead>
-            <tbody class="divide-y divide-border dark:divide-primary/20">
+            <tbody class="divide-y divide-border dark:divide-primary/20"> 
     `;
     prices.forEach(item => {
         tableHTML += `
-            <tr class="hover:bg-alt/50 transition-colors duration-150">
-                <td class="px-4 py-3 whitespace-nowrap text-main">${item.name}</td>
-                <td class="px-4 py-3 whitespace-nowrap text-main font-semibold">${item.price}</td>
-                <td class="px-4 py-3 whitespace-nowrap text-alt">${item.code}</td>
+            <tr class="hover:bg-primary/5 dark:hover:bg-primary/10 transition-colors duration-200">
+                <td class="px-4 py-3 whitespace-nowrap text-sm">${item.name}</td>
+                <td class="px-4 py-3 whitespace-nowrap text-sm font-semibold text-accent">${item.price}</td>
             </tr>
         `;
     });
-    tableHTML += `</tbody></table>`;
+    tableHTML += `
+            </tbody>
+        </table>
+    `;
     return tableHTML;
 }
 
-// Genera la lista de recomendaciones
-function generateRecommendationsList(recommendations) {
-    let listHTML = '<ul class="space-y-2 text-alt list-disc list-inside">';
-    recommendations.forEach(rec => {
-        listHTML += `<li>${rec}</li>`;
+function generateList(items) {
+    let listHTML = '<ul class="list-disc pl-5 space-y-2 text-main dark:text-main/90">';
+    items.forEach(item => {
+        listHTML += `<li>${item}</li>`;
     });
     listHTML += '</ul>';
     return listHTML;
 }
 
-// Rellena el contenido dinámico de la página y maneja el estado del botón
-function populateServiceContent(serviceKey) {
-    const data = serviceData[serviceKey];
-    if (!data) return;
-
-    // Mostrar el contenedor de detalles
+function setupServicesAccordion() {
+    const serviceCards = document.querySelectorAll('.service-card');
     const detailsContainer = document.getElementById('service-details-container');
-    if (detailsContainer) {
-        detailsContainer.classList.remove('hidden');
-    }
+    const titleElement = document.getElementById('detail-service-title');
+    const priceTableElement = document.getElementById('service-price-table-content');
+    const recommendationsContent = document.getElementById('recommendations-content');
+    const scheduleContent = document.getElementById('schedule-content');
 
-    // Actualizar el título
-    const titleEl = document.getElementById('detail-service-title');
-    if (titleEl) titleEl.textContent = data.title;
+    serviceCards.forEach(card => {
+        card.addEventListener('click', function() {
+            const serviceId = this.getAttribute('data-service-id');
+            const data = serviceData[serviceId];
 
-    // Actualizar la tabla de precios
-    const pricesEl = document.getElementById('service-price-table-content');
-    if (pricesEl) pricesEl.innerHTML = generatePriceTable(data.prices);
+            if (data) {
+                // 1. Actualizar Título
+                titleElement.textContent = data.title;
 
-    // Actualizar las recomendaciones
-    const recommendationsEl = document.getElementById('recommendations-content');
-    if (recommendationsEl) recommendationsEl.innerHTML = generateRecommendationsList(data.recommendations);
+                // 2. Actualizar Tabla de Precios
+                priceTableElement.innerHTML = generatePriceTable(data.prices);
 
-    // Actualizar el horario
-    const scheduleEl = document.getElementById('schedule-content');
-    if (scheduleEl) scheduleEl.textContent = data.schedule;
+                // 3. Actualizar Recomendaciones
+                recommendationsContent.innerHTML = generateList(data.recommendations);
 
-    // Actualizar el estado de los botones
-    document.querySelectorAll('.service-card').forEach(btn => {
-        btn.classList.remove('bg-accent', 'text-white');
-        if (btn.dataset.serviceId === serviceKey) {
-            btn.classList.add('bg-accent', 'text-white');
-        }
-    });
-}
+                // 4. Actualizar Horario
+                scheduleContent.innerHTML = `<p class="text-lg font-medium text-accent">${data.schedule}</p>`;
 
-// Función de inicialización para Servicios.html (llamada desde global.js)
-function initServiciosPage() {
-    document.querySelectorAll('.service-card').forEach(button => {
-        button.addEventListener('click', (event) => {
-            const serviceKey = event.currentTarget.dataset.serviceId;
-            if (serviceKey) {
-                populateServiceContent(serviceKey);
-                // Opcional: Guardar el estado para recargas
-                localStorage.setItem('activeService', serviceKey);
+                // 5. Mostrar y hacer scroll al contenedor de detalles
+                detailsContainer.classList.remove('hidden');
+                detailsContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                
+                // Efecto visual: Resaltar el botón activo (opcional, pero mejora UX)
+                serviceCards.forEach(c => c.classList.remove('border-2', 'border-accent', 'shadow-primary/50'));
+                this.classList.add('border-2', 'border-accent', 'shadow-primary/50');
+
             }
         });
     });
-
-    // Cargar el servicio inicial (ej. 'laboratorio') o el guardado
-    const initialService = localStorage.getItem('activeService') || 'laboratorio';
-    populateServiceContent(initialService);
 }
+
+if (document.querySelector('.service-card')) {
+        setupServicesAccordion(); 
+    }
