@@ -110,18 +110,18 @@ const serviceData = {
 // En tu archivo script.js:
 function generatePriceTable(prices) {
     let tableHTML = `
-        <table class="min-w-full divide-y divide-border dark:divide-primary/20">
+        <table class="min-w-full divide-y divide-border bg-main">
             <thead class="bg-primary/10 dark:bg-primary/20">
                 <tr>
-                    <th class="px-4 py-2 text-left text-sm font-medium text-primary dark:text-primary uppercase tracking-wider">Servicio</th>
-                    <th class="px-4 py-2 text-left text-sm font-medium text-primary dark:text-primary uppercase tracking-wider">Precio Estimado</th>
+                    <th class="bg-main px-4 py-2 text-left text-sm font-medium text-primary dark:text-primary uppercase tracking-wider">Servicio</th>
+                    <th class="bg-main px-4 py-2 text-left text-sm font-medium text-primary dark:text-primary uppercase tracking-wider">Precio Estimado</th>
                 </tr>
             </thead>
-            <tbody class="divide-y divide-border dark:divide-primary/20"> 
+            <tbody class="divide-y divide-border bg-main"> 
     `;
     prices.forEach(item => {
         tableHTML += `
-            <tr class="hover:bg-primary/5 dark:hover:bg-primary/10 transition-colors duration-200">
+            <tr class="bg-main transition-colors duration-200">
                 <td class="px-4 py-3 whitespace-nowrap text-sm">${item.name}</td>
                 <td class="px-4 py-3 whitespace-nowrap text-sm font-semibold text-accent">${item.price}</td>
             </tr>
@@ -135,7 +135,7 @@ function generatePriceTable(prices) {
 }
 
 function generateList(items) {
-    let listHTML = '<ul class="list-disc pl-5 space-y-2 text-main dark:text-main/90">';
+    let listHTML = '<ul class="bg-main list-disc pl-5 space-y-2 text-main ">';
     items.forEach(item => {
         listHTML += `<li>${item}</li>`;
     });
