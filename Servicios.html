@@ -17,13 +17,13 @@
     <div class="container mx-auto px-6 py-4 flex justify-between items-center">
         <div class="flex items-center space-x-2">
             <img src="iconos/logocics.png" class="h-10 w-10 ">
-            <span class="text-xl font-bold text-main">CECOSESOLA</span>
+            <span class="text-xl font-bold text-main">Centro Integral Cooperativo de</span>
         </div>
         <nav class="hidden md:flex items-center space-x-8" id="desktop-nav">
             <a href="index.html" class="nav-link text-alt hover:text-primary transition-colors duration-200">Home</a>
             <a href="especialidades.html" class="nav-link text-alt hover:text-primary transition-colors duration-200">Especialidades</a>
             <a href="Servicios.html" class="nav-link text-alt hover:text-primary transition-colors duration-200">Servicios</a>
-            <a href="#citas" class="nav-link text-alt hover:text-primary transition-colors duration-200">Contáctanos</a>
+            <a href="contactanos.html" class="nav-link text-alt hover:text-primary transition-colors duration-200">Contáctanos</a>
         </nav>
         
         <div class="flex items-center space-x-4">
@@ -39,7 +39,7 @@
         <a href="index.html" class="text-alt hover:text-primary transition-colors duration-200 p-2 rounded-lg hover:bg-alt text-lg">Home</a>
         <a href="especialidades.html" class="text-alt hover:text-primary transition-colors duration-200 p-2 rounded-lg hover:bg-alt text-lg">Especialidades</a>
         <a href="Servicios.html" class="text-alt hover:text-primary transition-colors duration-200 p-2 rounded-lg hover:bg-alt text-lg">Servicios</a>
-        <a href="#citas" class="text-alt hover:text-primary transition-colors duration-200 p-2 rounded-lg hover:bg-alt text-lg">Contáctanos</a>
+        <a href="contactanos.html" class="text-alt hover:text-primary transition-colors duration-200 p-2 rounded-lg hover:bg-alt text-lg">Contáctanos</a>
     </nav>
 </header>
 <button id="theme-toggle" class="fixed bottom-5 right-5 z-50 p-3 rounded-full bg-alt border border-main shadow-lg focus:outline-none">
@@ -62,7 +62,7 @@
                 <p class="text-sm text-alt dark:text-main opacity-80">Análisis clínicos completos.</p>
             </button>
             
-            <button class="service-card specialty-card bg-main dark:bg-main p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 text-left cursor-pointer" data-service-id="odontologia">
+            <button class="service-card specialty-card bg-main dark:bg-main p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 text-left cursor-pointer" data-service-id="rx">
                 <h3 class="text-xl font-semibold text-primary dark:text-primary flex items-center mb-1">
                         <img src="iconos/rx.png" class="mb-2 mr-5 w-6 h-6 service-icon">
                     Radiografia
@@ -72,7 +72,7 @@
 
             
 
-            <button class="service-card specialty-card bg-main dark:bg-main p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 text-left cursor-pointer" data-service-id="imagenologia">
+            <button class="service-card specialty-card bg-main dark:bg-main p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 text-left cursor-pointer" data-service-id="ecografia">
                 <h3 class="text-xl font-semibold text-primary dark:text-primary flex items-center mb-1">
                         <img src="iconos/ecografia.png" class="mb-2 mr-5 w-6 h-6 service-icon">
                     Ecografía
@@ -88,7 +88,7 @@
                 <p class="text-sm text-alt dark:text-main opacity-80">Consulta y chequeo primario.</p>
             </button>
 
-            <button class="service-card specialty-card bg-main dark:bg-bg-main p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 text-left cursor-pointer" data-service-id="saludmental">
+            <button class="service-card specialty-card bg-main dark:bg-bg-main p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 text-left cursor-pointer" data-service-id="mamografia">
                 <h3 class="text-xl font-semibold text-primary dark:text-primary flex items-center mb-1">
                         <img src="iconos/mamografia.png" class="mb-2 mr-5 w-8 h-8 service-icon">
 
@@ -108,7 +108,7 @@
            
         </div>
         </div>
-        <div id="service-details-container" class="mt-12 p-8 bg-main dark:bg-main text-main dark:text-main rounded-lg shadow-2xl transition-all duration-500 hidden">
+        <div id="service-details-container" class=" pb-10 container mx-auto px-6 mt-12 p-8 bg-main dark:bg-main text-main dark:text-main rounded-lg shadow-2xl transition-all duration-500 hidden">
             <h2 id="detail-service-title" class="text-3xl font-bold text-primary dark:text-primary mb-6 border-b border-border dark:border-primary/20 pb-3">Detalle del Servicio</h2>
 
             <div class="flex flex-col lg:flex-row gap-8">
@@ -143,7 +143,7 @@
         </div>
     
 </main>
-<body>
+</body>
        <a id="floating-cita-btn" href="#citas" class="
         fixed bottom-5 left-1/2 transform -translate-x-1/2 
         z-50 

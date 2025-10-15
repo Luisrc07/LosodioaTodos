@@ -17,45 +17,32 @@ const serviceData = {
         ],
         schedule: "Lunes a Viernes: 7:00 AM - 1:00 PM | Sábados: 8:00 AM - 12:00 PM",
     },
-    odontologia: {
-        title: "Odontología Preventiva",
+    rx: {
+        title: "Radiografia",
         prices: [
             { name: "Consulta General", price: "Bs. 40.000", code: "O-010" },
             { name: "Limpieza Dental", price: "Bs. 90.000", code: "O-011" },
             { name: "Aplicación de Flúor", price: "Bs. 35.000", code: "O-012" },
         ],
         recommendations: [
-            "Asistir a su cita con la boca limpia.",
-            "Si tiene radiografías recientes, tráigalas.",
-            "Para procedimientos, evite consumir alimentos 30 minutos antes.",
+            "Si usted está embarazada o cree estarlo, debe notificarlo al técnico de inmediato.",
+            "Quítese todas las joyas, relojes, piercings, gafas y ropa con cremalleras, botones o broches metálicos. El metal interfiere con la calidad de la imagen.",
+            "Use ropa suelta y cómoda que pueda quitarse fácilmente.",
         ],
         schedule: "Lunes a Jueves: 8:00 AM - 4:00 PM | Viernes: 9:00 AM - 3:00 PM",
     },
-    farmacia: {
-        title: "Farmacia Cooperativa",
-        prices: [
-            { name: "Consulta de Medicamentos", price: "Gratuita", code: "F-020" },
-            { name: "Inyectología", price: "Bs. 15.000", code: "F-021" },
-            { name: "Toma de Tensión", price: "Bs. 10.000", code: "F-022" },
-        ],
-        recommendations: [
-            "Presente la receta médica original para la dispensación de control.",
-            "Consulte al farmacéutico sobre interacciones de medicamentos.",
-            "Pregunte por nuestras marcas cooperativas con mejores precios.",
-        ],
-        schedule: "Lunes a Sábado: 7:00 AM - 5:00 PM",
-    },
-    imagenologia: {
-        title: "Imagenología (Rayos X y Eco)",
+    
+    ecografia: {
+        title: "Ecografia",
         prices: [
             { name: "Rayos X de Tórax", price: "Bs. 120.000", code: "I-030" },
             { name: "Ecosonograma Abdominal", price: "Bs. 180.000", code: "I-031" },
             { name: "Mamografía", price: "Bs. 250.000", code: "I-032" },
         ],
         recommendations: [
-            "Para ecosonogramas abdominales, asista con la vejiga llena.",
-            "Evite joyas y objetos metálicos en la zona a examinar.",
-            "Llegue 15 minutos antes de su cita para el registro.",
+            "Ecografía Abdominal: Generalmente se requiere ayuno (no comer ni beber) durante 6 a 8 horas antes del examen.",
+            "Ecografía Pélvica / Obstétrica: Se solicita tener la vejiga llena para obtener una imagen clara de los órganos pélvicos. Beba varios vasos de agua una hora antes de su cita.",
+            "Otros Estudios (Tiroides, Músculo-esquelético): No suelen requerir ninguna preparación especial.",
         ],
         schedule: "Lunes a Viernes: 8:00 AM - 12:00 PM y 2:00 PM - 4:00 PM",
     },
@@ -65,6 +52,7 @@ const serviceData = {
             { name: "Consulta de Control", price: "Bs. 60.000", code: "M-040" },
             { name: "Certificado Médico Vial", price: "Bs. 80.000", code: "M-041" },
             { name: "Suturas Menores", price: "Bs. 150.000", code: "M-042" },
+            
         ],
         recommendations: [
             "Traer un resumen de su historial médico reciente.",
@@ -73,16 +61,16 @@ const serviceData = {
         ],
         schedule: "Lunes a Sábado: 7:30 AM - 5:00 PM",
     },
-    saludmental: {
-        title: "Salud Mental (Psicología)",
+    mamografia: {
+        title: "Mamografia",
         prices: [
             { name: "Consulta Psicológica (1h)", price: "Bs. 90.000", code: "S-050" },
             { name: "Terapia de Pareja (1.5h)", price: "Bs. 150.000", code: "S-051" },
         ],
         recommendations: [
-            "Llegue puntualmente para aprovechar el tiempo de la sesión.",
-            "Busque un lugar tranquilo si la sesión es virtual.",
-            "La confidencialidad es clave, siéntase libre de expresarse.",
+            "No aplique desodorantes, antitranspirantes, talcos, lociones o perfumes en el área del pecho ni en las axilas.",
+            "Vista ropa cómoda de dos piezas (blusa y pantalón/falda), ya que deberá quitarse solo la ropa de la cintura para arriba.",
+            "Si tiene implantes mamarios o cirugías previas, avise al técnico. Lleve mamografías anteriores si las tiene.",
         ],
         schedule: "Martes y Jueves: 1:00 PM - 6:00 PM | Sábados: 9:00 AM - 1:00 PM",
     },
