@@ -388,27 +388,7 @@ function setupGalleryCarousel() {
 /**
  * Configura el observador de scroll para actualizar el navbar en index.html.
  */
-function setupScrollObserverForNav() {
-    const sections = document.querySelectorAll('main section[id]');
-    const navLinks = document.querySelectorAll('#desktop-nav a.nav-link');
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const id = entry.target.getAttribute('id');
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    // Comprueba si el href del enlace (la parte después del #) coincide con el id
-                    if (link.getAttribute('href').substring(1) === id) {
-                        link.classList.add('active');
-                    }
-                });
-            }
-        });
-    }, { rootMargin: '-40% 0px -60% 0px', threshold: 0 });
-
-    sections.forEach(section => observer.observe(section));
-}
 
 
 // --- FUNCIONES AUXILIARES (Sin cambios mayores) ---
