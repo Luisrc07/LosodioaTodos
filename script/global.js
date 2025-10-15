@@ -96,9 +96,7 @@ document.addEventListener('DOMContentLoaded', function() {
   
 
     // Lógica para la página de especialidades (especialidades.html)
-    if (document.querySelector('.specialty-card')) {
-        setupSpecialtiesAccordion(); // ¡RESTAURADO!
-    }
+  
 });
 
 function setupScrollObserverForNav() {

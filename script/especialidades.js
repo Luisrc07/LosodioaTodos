@@ -57,7 +57,9 @@ function setupSpecialtiesAccordion() {
         });
     });
 }
-
+    if (document.querySelector('.specialty-card')) {
+        setupSpecialtiesAccordion(); // ¡RESTAURADO!
+    }
 // Función de inicialización para Especialidades.html (llamada desde global.js)
 function initEspecialidadesPage() {
     setupSpecialtyToggle();
