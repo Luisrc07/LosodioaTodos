@@ -107,6 +107,7 @@ const serviceData = {
 // --- FUNCIONES ESPECÍFICAS DE SERVICIOS.HTML ---
 // ===================================================================
 
+
 // En tu archivo script.js:
 function generatePriceTable(prices) {
     let tableHTML = `
