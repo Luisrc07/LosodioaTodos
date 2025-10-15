@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CECOSESOLA – Especialidades</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-main text-main">
+<header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-main shadow-md">
+    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+        <div class="flex items-center space-x-2">
+            <img src="iconos/logocics.png" class="h-10 w-10 ">
+            <span class="text-xl font-bold text-main">Centro Integral Cooperativo de</span>
+        </div>
+        <nav class="hidden md:flex items-center space-x-8" id="desktop-nav">
+            <a href="index.html" class="nav-link text-alt hover:text-primary transition-colors duration-200">Home</a>
+            <a href="especialidades.html" class="nav-link text-alt hover:text-primary transition-colors duration-200">Especialidades</a>
+            <a href="Servicios.html" class="nav-link text-alt hover:text-primary transition-colors duration-200">Servicios</a>
+            <a href="contactanos.html" class="nav-link text-alt hover:text-primary transition-colors duration-200">Contáctanos</a>
+        </nav>
+        
+        <div class="flex items-center space-x-4">
+             <a href="#citas" class="hidden md:block color-pr text-pr font-semibold px-4 py-2 rounded-lg hover:bg-opacity-90 transition-all duration-200 text-sm">Registrate</a>
+            <button id="mobile-menu-button" class="md:hidden p-2 rounded-lg border border-main bg-main hover:bg-alt transition-colors duration-200">
+                <svg id="menu-icon-open" class="w-6 h-6 text-main" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                <svg id="menu-icon-close" class="w-6 h-6 text-main hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+    </div>
+    
+    <nav id="mobile-menu" class="absolute top-full left-0 right-0 bg-main border-b border-main shadow-lg md:hidden flex flex-col p-4 space-y-3">
+        <a href="index.html" class="text-alt hover:text-primary transition-colors duration-200 p-2 rounded-lg hover:bg-alt text-lg">Home</a>
+        <a href="especialidades.html" class="text-alt hover:text-primary transition-colors duration-200 p-2 rounded-lg hover:bg-alt text-lg">Especialidades</a>
+        <a href="Servicios.html" class="text-alt hover:text-primary transition-colors duration-200 p-2 rounded-lg hover:bg-alt text-lg">Servicios</a>
+        <a href="contactanos.html" class="text-alt hover:text-primary transition-colors duration-200 p-2 rounded-lg hover:bg-alt text-lg">Contáctanos</a>
+    </nav>
+</header>
+<button id="theme-toggle" class="fixed bottom-5 right-5 z-50 p-3 rounded-full bg-alt border border-main shadow-lg focus:outline-none">
+        <svg id="theme-toggle-dark-icon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+        <svg id="theme-toggle-light-icon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.707.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+    </button>
+
+    
+<main class="py-24 bg-gradient-section">
+    <div class="bg-gradient-section pb-10 container mx-auto px-6">
+        <h1 class="text-4xl font-bold text-center text-primary dark:text-primary mb-12 fade-in-section">Nuestros Servicios de Salud</h1>
+        
+        <div id="services-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            
+            <button class="service-card specialty-card bg-main dark:bg-main p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 text-left cursor-pointer" data-service-id="laboratorio">
+                <h3 class="text-xl font-semibold text-primary dark:text-primary flex items-center mb-1">
+                <img src="iconos/Laboraritorio.png" class="mb-2 mr-5 w-6 h-6 service-icon">
+                    Laboratorio
+                </h3>
+                <p class="text-sm text-alt dark:text-main opacity-80">Análisis clínicos completos.</p>
+            </button>
+            
+            <button class="service-card specialty-card bg-main dark:bg-main p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 text-left cursor-pointer" data-service-id="rx">
+                <h3 class="text-xl font-semibold text-primary dark:text-primary flex items-center mb-1">
+                        <img src="iconos/rx.png" class="mb-2 mr-5 w-6 h-6 service-icon">
+                    Radiografia
+                </h3>
+                <p class="text-sm text-alt dark:text-main opacity-80">Estudio radiografico, chequeo de huesos</p>
+            </button>
+
+            
+
+            <button class="service-card specialty-card bg-main dark:bg-main p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 text-left cursor-pointer" data-service-id="ecografia">
+                <h3 class="text-xl font-semibold text-primary dark:text-primary flex items-center mb-1">
+                        <img src="iconos/ecografia.png" class="mb-2 mr-5 w-6 h-6 service-icon">
+                    Ecografía
+                </h3>
+                <p class="text-sm text-alt dark:text-main opacity-80">ecosonogramas para chequeos partes blandas.</p>
+            </button>
+
+            <button class="service-card specialty-card bg-main dark:bg-main p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 text-left cursor-pointer" data-service-id="medicinageneral">
+                <h3 class="text-xl font-semibold text-primary dark:text-primary flex items-center mb-1">
+                        <img src="iconos/traumatologia.png" class="mb-2 mr-5 w-8 h-8 service-icon">
+                    Consulta General
+                </h3>
+                <p class="text-sm text-alt dark:text-main opacity-80">Consulta y chequeo primario.</p>
+            </button>
+
+            <button class="service-card specialty-card bg-main dark:bg-bg-main p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 text-left cursor-pointer" data-service-id="mamografia">
+                <h3 class="text-xl font-semibold text-primary dark:text-primary flex items-center mb-1">
+                        <img src="iconos/mamografia.png" class="mb-2 mr-5 w-8 h-8 service-icon">
+
+                    Mamografia
+                </h3>
+                <p class="text-sm text-alt dark:text-main opacity-80">Permite ver el tejido mamario</p>
+            </button>
+
+            <button class="service-card specialty-card bg-main dark:bg-main p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 text-left cursor-pointer" data-service-id="fisioterapia">
+                <h3 class="text-xl font-semibold text-primary dark:text-primary flex items-center mb-1">
+                        <img src="iconos/terapia.png" class="mb-2 mr-5 w-6 h-6 service-icon">
+                    Fisioterapia
+                </h3>
+                <p class="text-sm text-alt dark:text-main opacity-80">Rehabilitación física.</p>
+            </button>
+
+           
+        </div>
+        </div>
+        <div id="service-details-container" class=" pb-10 container mx-auto px-6 mt-12 p-8 bg-main dark:bg-main text-main dark:text-main rounded-lg shadow-2xl transition-all duration-500 hidden">
+            <h2 id="detail-service-title" class="text-3xl font-bold text-primary dark:text-primary mb-6 border-b border-border dark:border-primary/20 pb-3">Detalle del Servicio</h2>
+
+            <div class="flex flex-col lg:flex-row gap-8">
+
+                <div id="prices-column" class="bg-main lg:w-1/2 bg-gray-50 dark:bg-main p-4 rounded-lg shadow-inner">
+                    <h3 class="text-xl font-semibold text-primary dark:text-primary mb-4">Tarifas y Precios</h3>
+                    <div id="service-price-table-content" class="overflow-x-auto">
+                        </div>
+                </div>
+
+                <div class="lg:w-1/2 flex flex-col gap-6">
+                    
+                    <div id="recommendations-div" class="bg-main dark:bg-main p-4 rounded-lg shadow border border-border dark:border-primary/20">
+                        <h3 class="text-xl font-semibold text-primary dark:text-primary mb-3 flex items-center">
+                            <svg class="w-5 h-5 mr-2 text-accent dark:text-primary-light" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.168 1.025 1.168 2.825 0 3.85-1.171 1.025-3.071 1.025-4.242 0-1.168-1.025-1.168-2.825 0-3.85z" /><path stroke-linecap="round" stroke-linejoin="round" d="M12 18V12" /><path stroke-linecap="round" stroke-linejoin="round" d="M12 12c-4.418 0-8 3.582-8 8s3.582 8 8 8 8-3.582 8-8-3.582-8-8-8z" /></svg>
+                            Recomendaciones
+                        </h3>
+                        <div id="recommendations-content">
+                            </div>
+                    </div>
+
+                    <div id="schedule-div" class="bg-main dark:bg-main p-4 rounded-lg shadow border border-border dark:border-primary/20">
+                        <h3 class="text-xl font-semibold text-primary dark:text-primary mb-3 flex items-center">
+                            <svg class="w-5 h-5 mr-2 text-accent" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                            Horario de Atención
+                        </h3>
+                        <div id="schedule-content">
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+</main>
+</body>
+       <a id="floating-cita-btn" href="#citas" class="
+        fixed bottom-5 left-1/2 transform -translate-x-1/2 
+        z-50 
+        md:hidden 
+        color-pr text-pr font-bold 
+        px-6 py-3 rounded-full 
+        shadow-xl hover:shadow-2xl 
+        transition-all duration-300
+    ">
+        Registrar Cita
+    </a>
+    <div id="footer-placeholder"></div>
+
+   
+    <script src="script/global.js"></script>
+<script src="script/servicio.js"></script>
+
+</body>
+</html>

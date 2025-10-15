@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CECOSESOLA – Especialidades</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-main text-main">
+<header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-main shadow-md">
+    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+        <div class="flex items-center space-x-2">
+            <img src="iconos/logocics.png" class="h-10 w-10 ">
+            <span class="text-xl font-bold text-main">Centro Integral Cooperativo de Salud</span>
+        </div>
+        <nav class="hidden md:flex items-center space-x-8" id="desktop-nav">
+            <a href="index.html" class="nav-link text-alt hover:text-primary transition-colors duration-200">Home</a>
+            <a href="especialidades.html" class="nav-link text-alt hover:text-primary transition-colors duration-200">Especialidades</a>
+            <a href="Servicios.html" class="nav-link text-alt hover:text-primary transition-colors duration-200">Servicios</a>
+            <a href="contactanos.html" class="nav-link text-alt hover:text-primary transition-colors duration-200">Contáctanos</a>
+        </nav>
+        
+        <div class="flex items-center space-x-4">
+             <a href="#citas" class="hidden md:block color-pr text-pr font-semibold px-4 py-2 rounded-lg hover:bg-opacity-90 transition-all duration-200 text-sm">Registrate</a>
+            <button id="mobile-menu-button" class="md:hidden p-2 rounded-lg border border-main bg-main hover:bg-alt transition-colors duration-200">
+                <svg id="menu-icon-open" class="w-6 h-6 text-main" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                <svg id="menu-icon-close" class="w-6 h-6 text-main hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+    </div>
+    
+    <nav id="mobile-menu" class="absolute top-full left-0 right-0 bg-main border-b border-main shadow-lg md:hidden flex flex-col p-4 space-y-3">
+        <a href="index.html" class="text-alt hover:text-primary transition-colors duration-200 p-2 rounded-lg hover:bg-alt text-lg">Home</a>
+        <a href="especialidades.html" class="text-alt hover:text-primary transition-colors duration-200 p-2 rounded-lg hover:bg-alt text-lg">Especialidades</a>
+        <a href="Servicios.html" class="text-alt hover:text-primary transition-colors duration-200 p-2 rounded-lg hover:bg-alt text-lg">Servicios</a>
+        <a href="contactanos.html" class="text-alt hover:text-primary transition-colors duration-200 p-2 rounded-lg hover:bg-alt text-lg">Contáctanos</a>
+    </nav>
+</header>
+<button id="theme-toggle" class="fixed bottom-5 right-5 z-50 p-3 rounded-full bg-alt border border-main shadow-lg focus:outline-none">
+        <svg id="theme-toggle-dark-icon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+        <svg id="theme-toggle-light-icon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.707.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+    </button>
+
+
+
+
+    <main class="pt-20 md:pt-24 bg-gradient-section">
+        
+        <section class="py-12 md:py-16 container mx-auto px-6">
+            <div class="text-center max-w-4xl mx-auto mb-12">
+                <h1 class="text-4xl md:text-5xl font-bold text-primary mb-4">Nuestras Especialidades Médicas</h1>
+                <p class="text-lg text-alt">Encuentra al especialista que necesitas. Haz clic en la tarjeta para ver los doctores, horarios y agendar tu cita.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                
+                <div class="specialty-card bg-main border border-main rounded-xl shadow-md overflow-hidden cursor-pointer transition-shadow duration-300 hover:shadow-lg" data-specialty="medicina-general">
+                    <div class="p-4 md:p-6 flex justify-between items-center bg-alt/50">
+                        <span class="text-xl font-semibold text-main">Medicina General</span>
+                        <svg class="w-5 h-5 text-primary arrow-icon transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
+                    </div>
+                    <div class="doctor-list hidden border-t border-main/50">
+                        <div class="doctor-item p-4 border-b border-main/20 flex justify-between items-center">
+                            <div>
+                                <p class="font-bold text-main flex items-center mb-1"><svg class="w-5 h-5 mr-2 text-primary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 4a4 4 0 100 8 4 4 0 000-8zm-2 9a6 6 0 00-6 6v1h16v-1a6 6 0 00-6-6h-4z"/></svg> Dr. Juan Pérez</p>
+                                <p class="text-sm text-alt flex items-center mb-1"><svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg> Lun-Vie: 8:00 AM - 12:00 PM</p>
+                            </div>
+                            <a href="#citas" class="text-pr color-pr text-sm font-semibold px-4 py-2 rounded-lg hover:bg-opacity-90 transition-all duration-200">Agendar Cita</a>
+                        </div>
+                        <div class="doctor-item p-4 flex justify-between items-center">
+                            <div>
+                                <p class="font-bold text-main flex items-center mb-1"><svg class="w-5 h-5 mr-2 text-primary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 4a4 4 0 100 8 4 4 0 000-8zm-2 9a6 6 0 00-6 6v1h16v-1a6 6 0 00-6-6h-4z"/></svg> Dra. María González</p>
+                                <p class="text-sm text-alt flex items-center mb-1"><svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg> Sábados: 9:00 AM - 1:00 PM</p>
+                            </div>
+                            <a href="#citas" class="text-pr color-pr text-sm font-semibold px-4 py-2 rounded-lg hover:bg-opacity-90 transition-all duration-200">Agendar Cita</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="specialty-card bg-main border border-main rounded-xl shadow-md overflow-hidden cursor-pointer transition-shadow duration-300 hover:shadow-lg" data-specialty="pediatria">
+                    <div class="p-4 md:p-6 flex justify-between items-center bg-alt/50">
+                        <span class="text-xl font-semibold text-main">Pediatría</span>
+                        <svg class="w-5 h-5 text-primary arrow-icon transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
+                    </div>
+                    <div class="doctor-list hidden border-t border-main/50">
+                        <div class="doctor-item p-4 flex justify-between items-center">
+                            <div>
+                                <p class="font-bold text-main flex items-center mb-1"><svg class="w-5 h-5 mr-2 text-primary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 4a4 4 0 100 8 4 4 0 000-8zm-2 9a6 6 0 00-6 6v1h16v-1a6 6 0 00-6-6h-4z"/></svg> Dra. Ana Mendoza</p>
+                                <p class="text-sm text-alt flex items-center mb-1"><svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg> Lun-Mié: 2:00 PM - 6:00 PM</p>
+                            </div>
+                            <a href="#citas" class="text-pr color-pr text-sm font-semibold px-4 py-2 rounded-lg hover:bg-opacity-90 transition-all duration-200">Agendar Cita</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="specialty-card bg-main border border-main rounded-xl shadow-md overflow-hidden cursor-pointer transition-shadow duration-300 hover:shadow-lg" data-specialty="ginecologia">
+                    <div class="p-4 md:p-6 flex justify-between items-center bg-alt/50">
+                        <span class="text-xl font-semibold text-main">Ginecología</span>
+                        <svg class="w-5 h-5 text-primary arrow-icon transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
+                    </div>
+                    <div class="doctor-list hidden border-t border-main/50">
+                         <div class="doctor-item p-4 flex justify-between items-center">
+                            <div>
+                                <p class="font-bold text-main flex items-center mb-1"><svg class="w-5 h-5 mr-2 text-primary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 4a4 4 0 100 8 4 4 0 000-8zm-2 9a6 6 0 00-6 6v1h16v-1a6 6 0 00-6-6h-4z"/></svg> Dra. Diana Castro</p>
+                                <p class="text-sm text-alt flex items-center mb-1"><svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg> Jue-Vie: 8:00 AM - 12:00 PM</p>
+                            </div>
+                            <a href="#citas" class="text-pr color-pr text-sm font-semibold px-4 py-2 rounded-lg hover:bg-opacity-90 transition-all duration-200">Agendar Cita</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="specialty-card bg-main border border-main rounded-xl shadow-md overflow-hidden cursor-pointer transition-shadow duration-300 hover:shadow-lg" data-specialty="cardiologia">
+                    <div class="p-4 md:p-6 flex justify-between items-center bg-alt/50">
+                        <span class="text-xl font-semibold text-main">Cardiología</span>
+                        <svg class="w-5 h-5 text-primary arrow-icon transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
+                    </div>
+                    <div class="doctor-list hidden border-t border-main/50">
+                         <div class="doctor-item p-4 flex justify-between items-center">
+                            <div>
+                                <p class="font-bold text-main flex items-center mb-1"><svg class="w-5 h-5 mr-2 text-primary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 4a4 4 0 100 8 4 4 0 000-8zm-2 9a6 6 0 00-6 6v1h16v-1a6 6 0 00-6-6h-4z"/></svg> Dr. Ricardo Salas</p>
+                                <p class="text-sm text-alt flex items-center mb-1"><svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg> Martes: 9:00 AM - 12:00 PM</p>
+                            </div>
+                            <a href="#citas" class="text-pr color-pr text-sm font-semibold px-4 py-2 rounded-lg hover:bg-opacity-90 transition-all duration-200">Agendar Cita</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="specialty-card bg-main border border-main rounded-xl shadow-md overflow-hidden cursor-pointer transition-shadow duration-300 hover:shadow-lg" data-specialty="traumatologia">
+                    <div class="p-4 md:p-6 flex justify-between items-center bg-alt/50">
+                        <span class="text-xl font-semibold text-main">Traumatología</span>
+                        <svg class="w-5 h-5 text-primary arrow-icon transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
+                    </div>
+                    <div class="doctor-list hidden border-t border-main/50">
+                         <div class="doctor-item p-4 flex justify-between items-center border-b border-main/20">
+                            <div>
+                                <p class="font-bold text-main flex items-center mb-1"><svg class="w-5 h-5 mr-2 text-primary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 4a4 4 0 100 8 4 4 0 000-8zm-2 9a6 6 0 00-6 6v1h16v-1a6 6 0 00-6-6h-4z"/></svg> Dr. Pedro Ramírez</p>
+                                <p class="text-sm text-alt flex items-center mb-1"><svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg> Mar-Jue: 1:00 PM - 5:00 PM</p>
+                            </div>
+                            <a href="#citas" class="text-pr color-pr text-sm font-semibold px-4 py-2 rounded-lg hover:bg-opacity-90 transition-all duration-200">Agendar Cita</a>
+                        </div>
+                         <div class="doctor-item p-4 flex justify-between items-center">
+                            <div>
+                                <p class="font-bold text-main flex items-center mb-1"><svg class="w-5 h-5 mr-2 text-primary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 4a4 4 0 100 8 4 4 0 000-8zm-2 9a6 6 0 00-6 6v1h16v-1a6 6 0 00-6-6h-4z"/></svg> Dr. Miguel Torres</p>
+                                <p class="text-sm text-alt flex items-center mb-1"><svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg> Lun-Vie: 8:00 AM - 12:00 PM</p>
+                            </div>
+                            <a href="#citas" class="text-pr color-pr text-sm font-semibold px-4 py-2 rounded-lg hover:bg-opacity-90 transition-all duration-200">Agendar Cita</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="specialty-card bg-main border border-main rounded-xl shadow-md overflow-hidden cursor-pointer transition-shadow duration-300 hover:shadow-lg" data-specialty="dermatologia">
+                    <div class="p-4 md:p-6 flex justify-between items-center bg-alt/50">
+                        <span class="text-xl font-semibold text-main">Dermatología</span>
+                        <svg class="w-5 h-5 text-primary arrow-icon transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
+                    </div>
+                    <div class="doctor-list hidden border-t border-main/50">
+                         <div class="doctor-item p-4 flex justify-between items-center">
+                            <div>
+                                <p class="font-bold text-main flex items-center mb-1"><svg class="w-5 h-5 mr-2 text-primary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 4a4 4 0 100 8 4 4 0 000-8zm-2 9a6 6 0 00-6 6v1h16v-1a6 6 0 00-6-6h-4z"/></svg> Dra. Elena Páez</p>
+                                <p class="text-sm text-alt flex items-center mb-1"><svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg> Mié: 3:00 PM - 6:00 PM</p>
+                            </div>
+                            <a href="#citas" class="text-pr color-pr text-sm font-semibold px-4 py-2 rounded-lg hover:bg-opacity-90 transition-all duration-200">Agendar Cita</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="specialty-card bg-main border border-main rounded-xl shadow-md overflow-hidden cursor-pointer transition-shadow duration-300 hover:shadow-lg" data-specialty="oftalmologia">
+                    <div class="p-4 md:p-6 flex justify-between items-center bg-alt/50">
+                        <span class="text-xl font-semibold text-main">Oftalmología</span>
+                        <svg class="w-5 h-5 text-primary arrow-icon transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
+                    </div>
+                    <div class="doctor-list hidden border-t border-main/50">
+                         <div class="doctor-item p-4 flex justify-between items-center">
+                            <div>
+                                <p class="font-bold text-main flex items-center mb-1"><svg class="w-5 h-5 mr-2 text-primary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 4a4 4 0 100 8 4 4 0 000-8zm-2 9a6 6 0 00-6 6v1h16v-1a6 6 0 00-6-6h-4z"/></svg> Dr. Carlos Blanco</p>
+                                <p class="text-sm text-alt flex items-center mb-1"><svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg> Lun: 10:00 AM - 1:00 PM</p>
+                            </div>
+                            <a href="#citas" class="text-pr color-pr text-sm font-semibold px-4 py-2 rounded-lg hover:bg-opacity-90 transition-all duration-200">Agendar Cita</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="specialty-card bg-main border border-main rounded-xl shadow-md overflow-hidden cursor-pointer transition-shadow duration-300 hover:shadow-lg" data-specialty="odontologia">
+                    <div class="p-4 md:p-6 flex justify-between items-center bg-alt/50">
+                        <span class="text-xl font-semibold text-main">Odontología</span>
+                        <svg class="w-5 h-5 text-primary arrow-icon transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
+                    </div>
+                    <div class="doctor-list hidden border-t border-main/50">
+                        <div class="doctor-item p-4 flex justify-between items-center">
+                            <div>
+                                <p class="font-bold text-main flex items-center mb-1"><svg class="w-5 h-5 mr-2 text-primary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 4a4 4 0 100 8 4 4 0 000-8zm-2 9a6 6 0 00-6 6v1h16v-1a6 6 0 00-6-6h-4z"/></svg> Dra. Laura Giménez</p>
+                                <p class="text-sm text-alt flex items-center mb-1"><svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg> Vie: 1:00 PM - 5:00 PM</p>
+                            </div>
+                            <a href="#citas" class="text-pr color-pr text-sm font-semibold px-4 py-2 rounded-lg hover:bg-opacity-90 transition-all duration-200">Agendar Cita</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        </main>
+    <a id="floating-cita-btn" href="#citas" class="
+        fixed bottom-5 left-1/2 transform -translate-x-1/2 
+        z-50 
+        md:hidden 
+        color-pr text-pr font-bold 
+        px-6 py-3 rounded-full 
+        shadow-xl hover:shadow-2xl 
+        transition-all duration-300
+    ">
+        Registrar
+    </a>
+    <div id="footer-placeholder"></div>
+    
+<script src="script/global.js"></script>
+<script src="script/especialidades.js"></script>
+
+</body>
+</html>
