@@ -29,9 +29,7 @@ function setupSpecialtyToggle() {
     });
 }
 
-/**
- * ¡RESTAURADO! Configura el acordeón de especialidades.
- */
+
 function setupSpecialtiesAccordion() {
     const specialtyCards = document.querySelectorAll('.specialty-card');
     specialtyCards.forEach(card => {
