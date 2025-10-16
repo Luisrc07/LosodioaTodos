@@ -1,4 +1,3 @@
-
 // --- DATOS DE SERVICIOS ---
 
 const serviceData = {
@@ -10,36 +9,35 @@ const serviceData = {
             "Traer la orden médica si aplica.",
             "Informar sobre cualquier medicamento que esté tomando.",
         ],
-        schedule: "Lunes a Viernes: 7:00 AM - 1:00 PM | Sábados: 8:00 AM - 12:00 PM",
+        schedule: ["Lunes a Viernes: 6:30 AM - 4:00 PM" , 
+            "Sábados: 6:30 AM - 3:00 PM",
+            "Domingo: 7 AM - 12PM (orden de llegada) " ,
+        ],
     },
     rx: {
         title: "Radiografia",
-        prices: [
-            { name: "Consulta General", price: "Bs. 40.000", code: "O-010" },
-            { name: "Limpieza Dental", price: "Bs. 90.000", code: "O-011" },
-            { name: "Aplicación de Flúor", price: "Bs. 35.000", code: "O-012" },
-        ],
+        prices: [],
         recommendations: [
             "Si usted está embarazada o cree estarlo, debe notificarlo al técnico de inmediato.",
             "Quítese todas las joyas, relojes, piercings, gafas y ropa con cremalleras, botones o broches metálicos. El metal interfiere con la calidad de la imagen.",
             "Use ropa suelta y cómoda que pueda quitarse fácilmente.",
         ],
-        schedule: "Lunes a Jueves: 8:00 AM - 4:00 PM | Viernes: 9:00 AM - 3:00 PM",
+        schedule: ["Lunes a Viernes: 6:30 AM - 4:00 PM (Se atienden 80 pacientes).",
+        "Sabados: 7:00 AM - 12:00 PM (Se atienden 20 pacientes).",
+        " Domingo: 7:00 AM - 12:00 PM (Se atienden 20 pacientes).",
+    ]
     },
     
-    ecografia: {
+    eco: {
         title: "Ecografia",
-        prices: [
-            { name: "Rayos X de Tórax", price: "Bs. 120.000", code: "I-030" },
-            { name: "Ecosonograma Abdominal", price: "Bs. 180.000", code: "I-031" },
-            { name: "Mamografía", price: "Bs. 250.000", code: "I-032" },
-        ],
+        prices: [],
         recommendations: [
             "Ecografía Abdominal: Generalmente se requiere ayuno (no comer ni beber) durante 6 a 8 horas antes del examen.",
             "Ecografía Pélvica / Obstétrica: Se solicita tener la vejiga llena para obtener una imagen clara de los órganos pélvicos. Beba varios vasos de agua una hora antes de su cita.",
             "Otros Estudios (Tiroides, Músculo-esquelético): No suelen requerir ninguna preparación especial.",
         ],
-        schedule: "Lunes a Viernes: 8:00 AM - 12:00 PM y 2:00 PM - 4:00 PM",
+        schedule: ["Lunes a Viernes: 8:00 AM - 12:00 PM y 2:00 PM - 4:00 PM",
+        ],
     },
     medicinageneral: {
         title: "Medicina General",
@@ -59,15 +57,16 @@ const serviceData = {
     mamografia: {
         title: "Mamografia",
         prices: [
-            { name: "Consulta Psicológica (1h)", price: "Bs. 90.000", code: "S-050" },
-            { name: "Terapia de Pareja (1.5h)", price: "Bs. 150.000", code: "S-051" },
+            { name: "MAMOGRAFIA I BILATERAL", price: "Bs. 3.547", code: "S-050" },
+            { name: "MAMOGRAFIA BILATERAL CON PROTESIS", price: "Bs. 4.256,4", code: "S-051" },
+            { name: "MAMOGRAFIA I UNILATERAL", price: "Bs. 2.837,6", code: "S-051" },
         ],
         recommendations: [
             "No aplique desodorantes, antitranspirantes, talcos, lociones o perfumes en el área del pecho ni en las axilas.",
             "Vista ropa cómoda de dos piezas (blusa y pantalón/falda), ya que deberá quitarse solo la ropa de la cintura para arriba.",
             "Si tiene implantes mamarios o cirugías previas, avise al técnico. Lleve mamografías anteriores si las tiene.",
         ],
-        schedule: "Martes y Jueves: 1:00 PM - 6:00 PM | Sábados: 9:00 AM - 1:00 PM",
+        schedule: "Lunes a viernes: 7:00 am - 12:00 PM | El informa se entregara en 8 dias",
     },
     fisioterapia: {
         title: "Fisioterapia y Rehabilitación",
@@ -102,33 +101,39 @@ const serviceData = {
 //  FUNCIONES ESPECÍFICAS DE SERVICIOS.HTML 
 // ===================================================================
 
-function generatePriceTable(prices) {
+function generatePriceTable(prices, serviceId) {
     if (!prices || prices.length === 0) {
         return '<p class="text-center p-4">No hay precios disponibles para este servicio.</p>';
     }
 
-    //  Detectar si es pantalla móvil
+    // --- CORRECCIÓN 1: Se chequea si el servicio usa recomendaciones individuales del CSV ---
+    const hasIndividualRecommendations = (serviceId === 'laboratorio' || serviceId === 'rx' || serviceId === 'eco');
     const isMobile = window.innerWidth < 640;
 
-    
     // VISTA MÓVIL (CARDS)
-   
     if (isMobile) {
         return `
             <div class="space-y-3">
-                ${prices.map(item => `
+                ${prices.map((item, index) => `
                     <div class="border border-border rounded-xl p-3 bg-main shadow-sm hover:shadow-md transition-shadow duration-300">
                         <p class="font-semibold text-sm text-primary">${item.name}</p>
-                        <p class="text-accent font-bold text-base">${item.price}</p>
+                        <p class="text-accent font-bold text-base mb-2">${item.price}</p>
+                        ${hasIndividualRecommendations && item.recommendation ? `
+                            <button 
+                                class="text-xs text-primary font-semibold hover:underline mt-1 focus:outline-none"
+                                onclick="document.getElementById('rec-card-${index}').classList.toggle('hidden')"
+                            >
+                                🧪 Ver Indicación
+                            </button>
+                            <p id="rec-card-${index}" class="text-xs italic text-alt mt-1 p-2 bg-primary/10 rounded hidden">${item.recommendation}</p>
+                        ` : ''}
                     </div>
                 `).join('')}
             </div>
         `;
     }
 
-    
     // VISTA DESKTOP (TABLA)
-   
     let tableHTML = `
         <div class="w-full overflow-x-auto">
             <table class="min-w-full divide-y divide-border bg-main">
@@ -140,17 +145,37 @@ function generatePriceTable(prices) {
                         <th class="px-4 py-2 text-left text-sm font-medium text-primary uppercase tracking-wider whitespace-nowrap">
                             Precio Estimado
                         </th>
+                        ${hasIndividualRecommendations ? `<th class="px-4 py-2 text-left text-sm font-medium text-primary uppercase tracking-wider whitespace-nowrap">Indicación</th>` : ''}
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-border bg-main">
     `;
 
-    prices.forEach(item => {
+    prices.forEach((item, index) => {
         tableHTML += `
             <tr class="transition-colors duration-200 hover:bg-primary/5">
                 <td class="px-4 py-3 whitespace-nowrap text-sm">${item.name}</td>
                 <td class="px-4 py-3 whitespace-nowrap text-sm font-semibold text-accent">${item.price}</td>
+                ${hasIndividualRecommendations ? `
+                    <td class="px-4 py-3 text-sm">
+                        ${item.recommendation ? `
+                            <button 
+                                class="text-xs text-primary font-semibold hover:underline focus:outline-none"
+                                onclick="document.getElementById('rec-row-${index}').classList.toggle('hidden')"
+                            >
+                                🧪 Ver Indicación
+                            </button>
+                        ` : '<span class="text-gray-400 text-xs">N/A</span>'}
+                    </td>
+                ` : ''}
             </tr>
+            ${hasIndividualRecommendations && item.recommendation ? `
+                <tr id="rec-row-${index}" class="hidden bg-primary/5">
+                    <td colspan="3" class="px-4 py-2 text-xs italic text-alt">
+                        <strong>Indicación:</strong> ${item.recommendation}
+                    </td>
+                </tr>
+            ` : ''}
         `;
     });
 
@@ -180,24 +205,35 @@ function setupServicesAccordion() {
     const priceTableElement = document.getElementById('service-price-table-content');
     const recommendationsContent = document.getElementById('recommendations-content');
     const scheduleContent = document.getElementById('schedule-content');
+    const recommendationsDiv = document.getElementById('recommendations-div');
 
     serviceCards.forEach(card => {
         card.addEventListener('click', function() {
             const serviceId = this.getAttribute('data-service-id');
             const data = serviceData[serviceId];
+            // Se usa la misma lógica para ocultar la sección general
+            const hasIndividualRecommendations = (serviceId === 'laboratorio' || serviceId === 'rx' || serviceId === 'eco')
 
             if (data) {
                 // 1. Actualizar Título
                 titleElement.textContent = data.title;
 
-                // 2. Actualizar Tabla de Precios
-                priceTableElement.innerHTML = generatePriceTable(data.prices);
+                // 2. Actualizar Tabla de Precios (se le pasa el serviceId)
+                priceTableElement.innerHTML = generatePriceTable(data.prices, serviceId);
 
-                // 3. Actualizar Recomendaciones
-                recommendationsContent.innerHTML = generateList(data.recommendations);
+                // 3. Manejar y actualizar Recomendaciones
+                // Si es Lab, RX o ECO, ocultamos la sección general ya que las indicaciones son individuales en la tabla.
+                if (hasIndividualRecommendations) {
+                    recommendationsDiv.classList.add('hidden');
+                } else {
+                    recommendationsDiv.classList.remove('hidden');
+                    recommendationsContent.innerHTML = generateList(data.recommendations);
+                }
 
                 // 4. Actualizar Horario
-                scheduleContent.innerHTML = `<p class="text-lg font-medium text-accent">${data.schedule}</p>`;
+                // El horario puede ser un array o un string, la función generateList lo maneja bien.
+                const scheduleArray = Array.isArray(data.schedule) ? data.schedule : [data.schedule];
+                scheduleContent.innerHTML = generateList(scheduleArray);
 
                 // 5. Mostrar y hacer scroll al contenedor de detalles
                 detailsContainer.classList.remove('hidden');
@@ -222,8 +258,19 @@ function filterPriceTableItems(searchTerm) {
     const tableRows = container.querySelectorAll('tbody tr');
     if (tableRows.length > 0) {
         tableRows.forEach(row => {
+            // Ignorar las filas de indicación (las que tienen el ID 'rec-row-')
+            if (row.id && row.id.startsWith('rec-row-')) return; 
+
             const serviceName = row.querySelector('td:first-child').textContent.toLowerCase().trim();
-            row.style.display = serviceName.includes(normalizedSearchTerm) ? '' : 'none';
+            
+            // También ocultamos la fila de indicación si existe
+            if (!serviceName.includes(normalizedSearchTerm)) {
+                row.style.display = 'none';
+                const recRow = document.getElementById(`rec-row-${row.rowIndex - 1}`);
+                if (recRow) recRow.style.display = 'none';
+            } else {
+                 row.style.display = '';
+            }
         });
         return;
     }
@@ -238,12 +285,110 @@ function filterPriceTableItems(searchTerm) {
     }
 }
 
+// Funcion para cargar los datos de Radiografia (RX)
+async function loadRxData() {
+    try {
+        // --- CORRECCIÓN 2: Se eliminó 'data/' en la ruta ---
+        const response = await fetch('data/rx.csv'); 
+        const csvText = await response.text();
+        const rows = csvText.split('\n').slice(1).map(row => row.trim()).filter(row => row.length > 0);
+
+        const newPrices = rows.map(row => {
+            const columns = row.split(';');
+            const name = columns[0].trim();
+            const priceString = columns[1] ? columns[1].trim() : '';
+            // Columna de la indicación: índice 2
+            const recommendation = columns[2] ? columns[2].trim() : ''; 
+
+            if (!name || !priceString) {
+                return null;
+            }
+
+            // Normalización del precio (igual que en loadLabData)
+            const cleanedPriceString = priceString.replace(',', '.').replace(/[^.\d]/g, '');
+            const priceValue = parseFloat(cleanedPriceString);
+            if (isNaN(priceValue)) {
+                return null;
+            }
+            const formattedPrice = new Intl.NumberFormat('es-ES', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            }).format(priceValue);
+
+            return {
+                name: name,
+                price: `Bs. ${formattedPrice}`,
+                recommendation: recommendation // <- Incluir recomendación/indicación
+            };
+        }).filter(item => item !== null);
+
+        serviceData.rx.prices = newPrices;
+
+    } catch (error) {
+        console.error("Error cargando los datos de Radiografía:", error);
+        serviceData.rx.prices = [{
+            name: "Error al cargar la lista de exámenes. (Verifique que 'rx.csv' esté en la misma carpeta)",
+            price: "Por favor, intente más tarde.",
+            recommendation: ""
+        }];
+    }
+}
+
+// Función para cargar los datos de Ecosonograma (ECO)
+async function loadEcoData() {
+    try {
+        // --- CORRECCIÓN 2: Se eliminó 'data/' en la ruta ---
+        const response = await fetch('data/eco.csv'); 
+        const csvText = await response.text();
+        const rows = csvText.split('\n').slice(1).map(row => row.trim()).filter(row => row.length > 0);
+
+        const newPrices = rows.map(row => {
+            const columns = row.split(';');
+            const name = columns[0].trim();
+            const priceString = columns[1] ? columns[1].trim() : '';
+            // Columna de la indicación: índice 2
+            const recommendation = columns[2] ? columns[2].trim() : ''; 
+
+            if (!name || !priceString) {
+                return null;
+            }
+
+            // Normalización del precio (igual que en loadLabData)
+            const cleanedPriceString = priceString.replace(',', '.').replace(/[^.\d]/g, '');
+            const priceValue = parseFloat(cleanedPriceString);
+            if (isNaN(priceValue)) {
+                return null;
+            }
+            const formattedPrice = new Intl.NumberFormat('es-ES', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            }).format(priceValue);
+
+            return {
+                name: name,
+                price: `Bs. ${formattedPrice}`,
+                recommendation: recommendation // <- Incluir recomendación/indicación
+            };
+        }).filter(item => item !== null);
+
+        serviceData.eco.prices = newPrices;
+
+    } catch (error) {
+        console.error("Error cargando los datos de Ecosonograma:", error);
+        serviceData.eco.prices = [{
+            name: "Error al cargar la lista de exámenes. (Verifique que 'eco.csv' esté en la misma carpeta)",
+            price: "Por favor, intente más tarde.",
+            recommendation: ""
+        }];
+    }
+}
 
 // Esta función ahora "limpia" el string del precio antes de convertirlo a número.
 async function loadLabData() {
    
     try {
-        const response = await fetch('data/exalab.csv'); 
+        // --- CORRECCIÓN 2: Se eliminó en la ruta ---
+        const response = await fetch('./data/Lab.csv'); 
         
         if (!response.ok) { // Verifica si el archivo fue encontrado (status 200)
             throw new Error(`HTTP error! status: ${response.status}`);
@@ -251,42 +396,37 @@ async function loadLabData() {
         const csvText = await response.text();
         
         const newPrices = csvText
-            .split('\n')
-            .slice(1) 
-            .map(row => {
-                const columns = row.split(';');
-                if (columns.length < 2 || !columns[0] || !columns[1]) return null;
+    .split('\n')
+    .slice(1) // Si tu CSV no tiene encabezado, puedes comentar o eliminar esta línea
+    .map(row => {
+        const columns = row.split(';');
+        // Ahora verificamos que existan al menos las 2 primeras columnas
+        if (columns.length < 2 || !columns[0] || !columns[1]) return null;
 
-                const name = columns[0].trim();
-                
+        const name = columns[0].trim();
+        const priceString = columns[1].trim();
         
-                // 1. Limpiamos el string del precio:
-                //    - Quitamos puntos de miles (ej: "15.000,50" -> "15000,50")
-                //    - Reemplazamos la coma decimal por un punto (ej: "15000,50" -> "15000.50")
-                //    - Quitamos cualquier caracter que no sea número o punto.
-                const priceString = columns[1].trim();
-                
-                const cleanedPriceString = priceString.replace(/\./g, '').replace(',', '.').replace(/[^\d.]/g, '');
-                
-                // 2. Convertimos el string limpio a un número
-                const priceValue = parseFloat(cleanedPriceString);
-                
-                // 3. Verificamos si la conversión fue exitosa
-                if (isNaN(priceValue)) {
-                    return null; // Ignoramos filas con precios inválidos
-                }
-               
-                
-                const formattedPrice = new Intl.NumberFormat('es-ES', {
-                    minimumFractionDigits: 2,
-                    maximumFractionDigits: 2
-                }).format(priceValue);
+        // Capturamos la recomendación de la tercera columna
+        const recommendation = columns[2] && columns[2].trim() ? columns[2].trim() : "";
 
-                return {
-                    name: name,
-                    price: `Bs. ${formattedPrice}`
-                };
-            })
+        // Lógica para limpiar y formatear el precio (ya la tienes bien)
+        const cleanedPriceString = priceString.replace(/\./g, '').replace(',', '.').replace(/[^\d.]/g, '');
+        const priceValue = parseFloat(cleanedPriceString);
+        if (isNaN(priceValue)) {
+            return null;
+        }
+        const formattedPrice = new Intl.NumberFormat('es-ES', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        }).format(priceValue);
+
+        // Añadimos 'recommendation' al objeto que retornamos
+        return {
+            name: name,
+            price: `Bs. ${formattedPrice}`,
+            recommendation: recommendation // <-- La nueva propiedad
+        };
+    })
             .filter(item => item !== null);
 
         serviceData.laboratorio.prices = newPrices;
@@ -296,7 +436,7 @@ async function loadLabData() {
       
         // Si hay un error (ej: archivo no encontrado), mostramos un mensaje útil.
         serviceData.laboratorio.prices = [{
-            name: "Error al cargar la lista de exámenes.",
+            name: "Error al cargar la lista de exámenes. (Verifique que 'Lab.csv' esté en la misma carpeta)",
             price: "Por favor, intente más tarde."
         }];
     }
@@ -304,7 +444,10 @@ async function loadLabData() {
 
 
 document.addEventListener('DOMContentLoaded', async () => {
+    // Llama a las 3 funciones de carga de CSV
     await loadLabData();
+    await loadRxData();
+    await loadEcoData();
 
     if (document.querySelector('.service-card')) {
         setupServicesAccordion();
