@@ -1,15 +1,10 @@
-// ===================================================================
+
 // --- DATOS DE SERVICIOS ---
-// ===================================================================
+
 const serviceData = {
     laboratorio: {
         title: "Laboratorio Clínico",
-        prices: [
-            { name: "Hematología Completa", price: "Bs. 50.000", code: "H-001" },
-            { name: "Perfil Lipídico", price: "Bs. 75.000", code: "L-002" },
-            { name: "Glicemia en Ayunas", price: "Bs. 30.000", code: "G-003" },
-            { name: "Prueba de Orina", price: "Bs. 25.000", code: "U-004" },
-        ],
+        prices: [], // Se llenará desde el CSV
         recommendations: [
             "Debe asistir en ayunas (mínimo 8 horas).",
             "Traer la orden médica si aplica.",
@@ -104,38 +99,73 @@ const serviceData = {
 };
 
 // ===================================================================
-// --- FUNCIONES ESPECÍFICAS DE SERVICIOS.HTML ---
+//  FUNCIONES ESPECÍFICAS DE SERVICIOS.HTML 
 // ===================================================================
 
-// En tu archivo script.js:
 function generatePriceTable(prices) {
+    if (!prices || prices.length === 0) {
+        return '<p class="text-center p-4">No hay precios disponibles para este servicio.</p>';
+    }
+
+    //  Detectar si es pantalla móvil
+    const isMobile = window.innerWidth < 640;
+
+    
+    // VISTA MÓVIL (CARDS)
+   
+    if (isMobile) {
+        return `
+            <div class="space-y-3">
+                ${prices.map(item => `
+                    <div class="border border-border rounded-xl p-3 bg-main shadow-sm hover:shadow-md transition-shadow duration-300">
+                        <p class="font-semibold text-sm text-primary">${item.name}</p>
+                        <p class="text-accent font-bold text-base">${item.price}</p>
+                    </div>
+                `).join('')}
+            </div>
+        `;
+    }
+
+    
+    // VISTA DESKTOP (TABLA)
+   
     let tableHTML = `
-        <table class="min-w-full divide-y divide-border dark:divide-primary/20">
-            <thead class="bg-primary/10 dark:bg-primary/20">
-                <tr>
-                    <th class="px-4 py-2 text-left text-sm font-medium text-primary dark:text-primary uppercase tracking-wider">Servicio</th>
-                    <th class="px-4 py-2 text-left text-sm font-medium text-primary dark:text-primary uppercase tracking-wider">Precio Estimado</th>
-                </tr>
-            </thead>
-            <tbody class="divide-y divide-border dark:divide-primary/20"> 
+        <div class="w-full overflow-x-auto">
+            <table class="min-w-full divide-y divide-border bg-main">
+                <thead class="bg-primary/10 dark:bg-primary/20">
+                    <tr>
+                        <th class="px-4 py-2 text-left text-sm font-medium text-primary uppercase tracking-wider whitespace-nowrap">
+                            Servicio
+                        </th>
+                        <th class="px-4 py-2 text-left text-sm font-medium text-primary uppercase tracking-wider whitespace-nowrap">
+                            Precio Estimado
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-border bg-main">
     `;
+
     prices.forEach(item => {
         tableHTML += `
-            <tr class="hover:bg-primary/5 dark:hover:bg-primary/10 transition-colors duration-200">
+            <tr class="transition-colors duration-200 hover:bg-primary/5">
                 <td class="px-4 py-3 whitespace-nowrap text-sm">${item.name}</td>
                 <td class="px-4 py-3 whitespace-nowrap text-sm font-semibold text-accent">${item.price}</td>
             </tr>
         `;
     });
+
     tableHTML += `
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </div>
     `;
+
     return tableHTML;
 }
 
+
 function generateList(items) {
-    let listHTML = '<ul class="list-disc pl-5 space-y-2 text-main dark:text-main/90">';
+    let listHTML = '<ul class="bg-main list-disc pl-5 space-y-2 text-main ">';
     items.forEach(item => {
         listHTML += `<li>${item}</li>`;
     });
@@ -182,6 +212,108 @@ function setupServicesAccordion() {
     });
 }
 
-if (document.querySelector('.service-card')) {
-        setupServicesAccordion(); 
+function filterPriceTableItems(searchTerm) {
+    const container = document.querySelector('#service-price-table-content');
+    if (!container) return;
+
+    const normalizedSearchTerm = searchTerm.toLowerCase().trim();
+
+    // MODO TABLA
+    const tableRows = container.querySelectorAll('tbody tr');
+    if (tableRows.length > 0) {
+        tableRows.forEach(row => {
+            const serviceName = row.querySelector('td:first-child').textContent.toLowerCase().trim();
+            row.style.display = serviceName.includes(normalizedSearchTerm) ? '' : 'none';
+        });
+        return;
     }
+
+    // MODO CARDS (móvil)
+    const cards = container.querySelectorAll('div.border.rounded-xl');
+    if (cards.length > 0) {
+        cards.forEach(card => {
+            const text = card.textContent.toLowerCase().trim();
+            card.style.display = text.includes(normalizedSearchTerm) ? '' : 'none';
+        });
+    }
+}
+
+
+// Esta función ahora "limpia" el string del precio antes de convertirlo a número.
+async function loadLabData() {
+   
+    try {
+        const response = await fetch('data/exalab.csv'); 
+        
+        if (!response.ok) { // Verifica si el archivo fue encontrado (status 200)
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const csvText = await response.text();
+        
+        const newPrices = csvText
+            .split('\n')
+            .slice(1) 
+            .map(row => {
+                const columns = row.split(';');
+                if (columns.length < 2 || !columns[0] || !columns[1]) return null;
+
+                const name = columns[0].trim();
+                
+        
+                // 1. Limpiamos el string del precio:
+                //    - Quitamos puntos de miles (ej: "15.000,50" -> "15000,50")
+                //    - Reemplazamos la coma decimal por un punto (ej: "15000,50" -> "15000.50")
+                //    - Quitamos cualquier caracter que no sea número o punto.
+                const priceString = columns[1].trim();
+                
+                const cleanedPriceString = priceString.replace(/\./g, '').replace(',', '.').replace(/[^\d.]/g, '');
+                
+                // 2. Convertimos el string limpio a un número
+                const priceValue = parseFloat(cleanedPriceString);
+                
+                // 3. Verificamos si la conversión fue exitosa
+                if (isNaN(priceValue)) {
+                    return null; // Ignoramos filas con precios inválidos
+                }
+               
+                
+                const formattedPrice = new Intl.NumberFormat('es-ES', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                }).format(priceValue);
+
+                return {
+                    name: name,
+                    price: `Bs. ${formattedPrice}`
+                };
+            })
+            .filter(item => item !== null);
+
+        serviceData.laboratorio.prices = newPrices;
+        
+    } catch (error) {
+        console.error("Error cargando los datos del laboratorio:", error);
+      
+        // Si hay un error (ej: archivo no encontrado), mostramos un mensaje útil.
+        serviceData.laboratorio.prices = [{
+            name: "Error al cargar la lista de exámenes.",
+            price: "Por favor, intente más tarde."
+        }];
+    }
+}
+
+
+document.addEventListener('DOMContentLoaded', async () => {
+    await loadLabData();
+
+    if (document.querySelector('.service-card')) {
+        setupServicesAccordion();
+    }
+
+    const searchInput = document.getElementById('service-search');
+    if (searchInput) {
+        searchInput.addEventListener('keyup', (e) => {
+            filterPriceTableItems(e.target.value);
+        });
+    }
+});

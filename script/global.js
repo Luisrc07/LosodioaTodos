@@ -89,14 +89,8 @@ document.addEventListener('DOMContentLoaded', function() {
     setupServicesDropdown();
     updateActiveNavLink(); // ¡NUEVO! Función para el navbar dinámico
 
-    // --- 2. LÓGICA ESPECÍFICA DE CADA PÁGINA ---
-    // Se ejecuta solo si encuentra los elementos correspondientes en la página actual.
 
-    // Lógica para la página principal (index.html)
-  
 
-    // Lógica para la página de especialidades (especialidades.html)
-  
 });
 
 function setupScrollObserverForNav() {

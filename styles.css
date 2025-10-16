@@ -40,9 +40,12 @@
 }
 body {
     font-family: 'Inter', sans-serif;
+    min-height: 100vh; 
+    display: flex; 
+    flex-direction: column; 
+    transition: background-color 0.3s, color 0.3s;
     background-color: var(--color-bg);
     color: var(--color-text);
-    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 main {
@@ -53,53 +56,30 @@ main {
 .text-pr { color: var(--color-text-pr); }
 .color-pr { background-color: var(--color-pr); }
 .bg-main { background-color: var(--color-bg); }
-.bg-alt { background-color: var(--color-bg-alt); }
 .text-main { color: var(--color-text); }
+.bg-alt { background-color: var(--color-bg-alt); }
 .text-alt { color: var(--color-text-alt); }
-.bg-primary { background-color: var(--color-primary); }
 .text-primary { color: var(--color-primary); }
+.bg-primary { background-color: var(--color-primary); }
+.text-accent { color: var(--color-accent); }
 .border-main { border-color: var(--color-border); }
+.border-border { border-color: var(--color-border); }
 .bg-footer { background-color: var(--color-footer-bg); }
 .text-footer { color: var(--color-footer-text); }
 
-/* Estilo de degradado para secciones */
+/* Estilos de gradiente para secciones (opcional) */
 .bg-gradient-section {
-    background: linear-gradient(180deg, var(--color-bg) 0%, var(--color-bg-alt) 15%, var(--color-bg-alt) 85%, var(--color-bg) 100%);
+    background: linear-gradient(to bottom, var(--color-bg-alt), var(--color-bg));
 }
 
-
 /* Estilos del Navbar */
-#navbar {
+.navbar-fixed {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 40;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-    
-    /* --- ESTADO INICIAL (Más gris y con sombra) --- */
-    /* 1. Color ajustado: Se redujo la opacidad del blanco para un tono más gris */
-    background-color: rgba(255, 255, 255, 0.7); 
-    backdrop-filter: blur(10px); /* Aumentamos un poco el desenfoque para mejorar el efecto */
-    -webkit-backdrop-filter: blur(10px);
-    
-    /* 2. Sombra añadida: Esta sombra ahora es visible desde el principio */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08); 
-    border-bottom: 1px solid transparent;
-}
-
-/* Estilos del navbar en modo oscuro */
-.dark #navbar {
-    background-color: rgba(13, 44, 74, 0.7); /* Tono oscuro semi-transparente */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-}
-
-/* --- ESTADO AL HACER SCROLL (Ahora solo cambia el color a sólido) --- */
-#navbar.navbar-scrolled {
-    background-color: var(--color-bg); 
-    border-bottom: 1px solid var(--color-border);
-    /* La sombra ya está en el estado inicial, pero la ajustamos ligeramente para que sea más notoria */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+    transition: all 0.3s ease;
 }
 
 /* ===== INICIO: NUEVOS ESTILOS PARA NAVBAR ===== */
@@ -197,7 +177,8 @@ main {
 
 .fade-in-section {
     opacity: 0;
-    pointer-events: none;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
 .fade-in-section.is-visible {
@@ -207,7 +188,6 @@ main {
 
 /* ========== ESTILOS PARA EL CARRUSEL (Modificado) ========== */
 
-/* ========== NUEVOS ESTILOS PARA EL CARRUSEL ========== */
 .carousel-item {
     min-width: 100%;
     position: relative;
@@ -246,7 +226,8 @@ main {
     color: #DDF4E7;
 }
 .dark .carousel-nav-btn:hover {
-    background-color: rgba(13, 44, 74, 0.9);
+    background-color: rgba(13, 44, 74, 0.8);
+    transform: translateY(-50%) scale(1.1);
 }
 
 /* Ajuste de posición para que no se peguen a los bordes */
