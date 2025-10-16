@@ -18,9 +18,9 @@ const serviceData = {
         title: "Radiografia",
         prices: [],
         recommendations: [
-            "Si usted está embarazada o cree estarlo, debe notificarlo al técnico de inmediato.",
-            "Quítese todas las joyas, relojes, piercings, gafas y ropa con cremalleras, botones o broches metálicos. El metal interfiere con la calidad de la imagen.",
-            "Use ropa suelta y cómoda que pueda quitarse fácilmente.",
+            "Si es menor de edad debe venir con su respectivo representante!.",
+            "El paciente debe traer orden médica.",
+            "Si necesita informe para el estudio debe dejarlo, encaso de llevarselo debe traer el estudio nuevemente y no haber transcurrido 15 dias de haberse realizado el estudio.",
         ],
         schedule: ["Lunes a Viernes: 6:30 AM - 4:00 PM (Se atienden 80 pacientes).",
         "Sabados: 7:00 AM - 12:00 PM (Se atienden 20 pacientes).",
@@ -223,13 +223,13 @@ function setupServicesAccordion() {
 
                 // 3. Manejar y actualizar Recomendaciones
                 // Si es Lab, RX o ECO, ocultamos la sección general ya que las indicaciones son individuales en la tabla.
-                if (hasIndividualRecommendations) {
+                /*if (hasIndividualRecommendations) {
                     recommendationsDiv.classList.add('hidden');
                 } else {
                     recommendationsDiv.classList.remove('hidden');
-                    recommendationsContent.innerHTML = generateList(data.recommendations);
-                }
-
+                   
+                }*/
+                recommendationsContent.innerHTML = generateList(data.recommendations);
                 // 4. Actualizar Horario
                 // El horario puede ser un array o un string, la función generateList lo maneja bien.
                 const scheduleArray = Array.isArray(data.schedule) ? data.schedule : [data.schedule];
